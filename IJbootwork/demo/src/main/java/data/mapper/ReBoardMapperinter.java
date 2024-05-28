@@ -17,4 +17,6 @@ public interface ReBoardMapperinter {
 	public List<ReBoardDto> getPagingList(Map<String, Integer> map);
 	public void updateReadcount(int num);
 	public ReBoardDto getData(int num);
+	public void updateBoard(ReBoardDto dto);
+	public void deleteBoard(int num);
 }

@@ -88,4 +88,56 @@ public class BoardWriteController {
 
         return "redirect:./list?currentPage="+currentPage;
     }
+
+    @GetMapping("/updateform")
+    public String updateForm(
+            @RequestParam int num,
+            @RequestParam int currentPage,
+            Model model
+    ){
+        model.addAttribute("currentPage", currentPage);
+        //dto 얻기
+        ReBoardDto dto = reBoardService.getData(num);
+        model.addAttribute("dto", dto);
+
+        return "board/updateform";
+    }
+    @PostMapping("/update")
+    public String update(
+            @RequestParam("upload") MultipartFile upload,
+            @ModelAttribute ReBoardDto dto,
+            @RequestParam int currentPage,
+            HttpServletRequest request
+    ){
+        String uploadphoto = upload.getOriginalFilename();
+
+        if(!uploadphoto.equals("")){
+        String savePath=request.getSession().getServletContext().getRealPath("/save");
+        String ext = uploadphoto.substring(uploadphoto.lastIndexOf("."));
+        uploadphoto = UUID.randomUUID()+"."+ext;
+        //업로드
+            try {
+                upload.transferTo(new File(savePath+"/"+uploadphoto));
+            } catch (IOException | IllegalStateException e) {
+                throw new RuntimeException(e);
+            }
+        }else{
+            uploadphoto=dto.getUploadphoto();
+        }
+        //dto의 사진변경
+        dto.setUploadphoto(uploadphoto);
+        //업데이트 해주기
+        reBoardService.updateBoard(dto);
+
+        return "redirect:./detail?num="+dto.getNum()+"&currentPage="+currentPage;
+    }
+
+    @GetMapping("/delete")
+    public String delete(
+            @RequestParam int num,
+            @RequestParam int currentPage
+    ){
+        reBoardService.deleteBoard(num);
+        return "redirect:./list?currentPage="+currentPage;
+    }
 }

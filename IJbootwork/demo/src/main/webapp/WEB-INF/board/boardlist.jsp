@@ -28,7 +28,7 @@ body * {
 	<!-- 글쓰기 버튼은 로그인을 해야만 보인다 -->
 	<c:if test="${sessionScope.loginok!=null}">
 		<button type="button" class="btn btn-outline-success"
-			style="width: 100px;" onclick="location.href='./writeform'">글쓰기</button>
+			style="width: 100px;" onclick="location.href='./writeform'"><i class="bi bi-pencil"></i>글쓰기</button>
 	</c:if>
 	<h5>총 ${totalCount}개의 글이 있습니다</h5>
 	<table class="table table-striped" style="width: 600px;">
@@ -54,7 +54,7 @@ body * {
 					<td align="center">${no}<c:set var="no" value="${no-1}"></c:set>
 					</td>
 					<td>
-						<!-- 제목 --> <a href="./detail?num=${dto.num}"> <!-- relevel한개당 두칸 띄우기 -->
+						<!-- 제목 --> <a href="./detail?num=${dto.num}&currentPage=${currentPage}"> <!-- relevel한개당 두칸 띄우기 -->
 							<c:forEach begin="1" end="${dto.relevel}">
 							&nbsp;&nbsp;
 						</c:forEach> <!-- 답글일 경우 답글 이미지 --> <c:if test="${dto.restep>0}">
