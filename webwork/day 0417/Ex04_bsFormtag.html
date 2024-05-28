@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--부트스트랩-->
+<!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!--글꼴-->
+<link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Dongle&family=Gaegu&family=Gowun+Batang&family=Reem+Kufi+Fun:wght@400..700&family=Song+Myung&family=Tilt+Neon&display=swap" rel="stylesheet">
+ <style>
+        body *{
+            font-family: "Gowun Batang"; font-size: 15px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div style="margin: 30px;">
+    <table class="table table-bordered" style="width: 500px;">
+        <caption align="top">개인정보입력</caption>
+        <tr>
+            <th class="table-info" width="80">이름</th>
+            <td>
+                <input type="text" id="name" style="width: 120px;" 
+                class="form-control" autofocus placeholder="input name">
+            </td>
+        </tr>
+        <tr>
+            <th class="table-info">성별</th>
+            <td>
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" value="남자" name="gender" checked>&nbsp;남자
+                </label>
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" value="여자" name="gender">&nbsp;여자
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <th class="table-info">이미지</th>
+            <td>
+                <select id="selimage" style="width: 140px;" class="form-select form-select-sm">
+                <option hidden disabled selected>select image</option>
+                <option value="../image/talent/17.jpg">신민아</option>
+                <option value="../image/talent/18.jpg">신세경</option>
+                <option value="../image/talent/20.jpg">유아인</option>
+                <option value="../image/talent/12.jpg">박보영</option>
+                <option value="../image/talent/19.jpg">수지</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th class="table-info">이메일</th>
+            <td>
+                <div class="input-group">
+               <input type="text" id="email1" style="width: 100px;"
+                class="form-control">
+               <b>@</b>
+               <input type="text" id="email2" style="width: 120px;"
+                class="form-control">
+               <select id="selemail" class="form-select form-select-sm" style="width: 120px;">
+                <option hidden disabled selected>select email</option>
+                <option value="naver.com">네이버</option>
+                <option value="nate.com">네이트</option>
+                <option value="gmail.com">지메일</option>
+                <option value="-">직접입력</option>
+               </select>
+               <script>
+                //select 이벤트
+                document.getElementById("selemail").onchange=function(){
+                    let v=this.value;
+                    let e2=document.getElementById("email2");
+                    if(v=='-'){
+                        e2.value="";
+                        e2.focus();
+                    }else{
+                        e2.value=v;
+                    }
+                }
+               </script>
+                </div>
+            </td>
+            <tr>
+                <th class="table-info">운전면허</th>
+                <td>
+                    <label>
+                        <input type="checkbox" id="lic" class="form-check-input">운전면허
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center" class="table-secondary">
+                    <button type="button" class="btn btn-warning"
+                    id="btnresult">결과확인</button>
+                </td>
+            </tr>
+    </table>
+</div>
+<div class="alert alert-light msg" style="width: 500px; height: auto;">
+    result
+    <script>
+        //결과 확인 버튼 이벤트
+        document.getElementById("btnresult").onclick=function(){
+            //출력할 div
+            let msg=document.querySelector(".msg");
+            let s="";
+
+            //이미지
+            let img=document.getElementById("selimage").value;
+            s+=`<img src="${img}" width=150 align="right">`;
+
+            //이름
+            let name=document.getElementById("name").value;
+            s+=`이름: ${name}<br>`;
+
+            //성별
+            // let gender;
+            // document.getElementsByName("gender").forEach(radio=>{
+            //     if(radio.checked){
+            //         gender = radio.value;
+            //     }
+            // });
+            //바로 checked를 받으면 이게 여러개가 있는 배열이라 못받음
+            let gender=document.getElementsByName("gender");
+            let gg;
+            for(let g of gender){
+                if(g.checked){
+                    gg=g.value;
+                }
+            }
+            
+            s+=`성별: ${gg}<br>`            
+
+            //이메일
+            let em1=document.getElementById("email1").value;
+            let em2=document.getElementById("email2").value;
+
+            s+=`메일: ${em1}@${em2}<br>`;
+
+            //운전면허 보유 여부
+            let isChecked = document.getElementById("lic").checked;
+            let lic="";
+            if (isChecked) {
+            // 체크되어 있음
+                lic="보유";
+            } else {
+            // 체크되어 있지 않음
+            lic="미보유";
+            }
+            s+=`운전면허: ${lic}<br>`;
+
+            msg.innerHTML=s;
+        }
+       
+    </script>
+</div>
+</body>
+</html>

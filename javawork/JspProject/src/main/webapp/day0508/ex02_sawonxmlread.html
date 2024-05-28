@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!--�۲�-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dokdo&family=Dongle&family=Gaegu&family=Gowun+Batang&family=Reem+Kufi+Fun:wght@400..700&family=Song+Myung&family=Dancing+Script&family=Tilt+Neon&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
+    />
+    <style>
+      @font-face {
+        font-family: "Pretendard-Regular";
+        src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+          format("woff");
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      body * {
+        font-family: "Pretendard-Regular";
+      }
+      div.listicon {
+        text-align: center;
+        font-size: 2em;
+      }
+      div.listicon i {
+        cursor: pointer;
+      }
+      div.listicon i:hover {
+        color: pink;
+        text-shadow: 3px 3px 3px gray;
+        transition: 0.5s;
+      }
+      div.list2 {
+        width: 400px;
+        height: auto;
+        padding: 10px;
+        border: 2px solid gray;
+        border-radius: 20px;
+        margin-bottom: 10px;
+      }
+      div.list2 img {
+        width: 130px;
+        height: 130px;
+        border: 1px solid gray;
+        border-radius: 20px;
+        margin-right: 10px;
+      }
+      table.table {
+        width: 600px;
+      }
+      figure.list1fig {
+        text-align: center;
+        width: 300px;
+        background-color: pink;
+        border: 2px inset gold;
+        border-radius: 20px;
+        float: left;
+        margin: 20px;
+      }
+      figure.list1fig img {
+        width: 250px;
+        height: 300px;
+        border-radius: 20px;
+        margin: 10px;
+      }
+      b.figbuseo {
+        color: red;
+      }
+      div.list1div {
+        float: left;
+      }
+    </style>
+  </head>
+  <script>
+    $(function () {
+      //처음 시작시 목록 형태(list2 가 처음에 나타나도록)
+      $("#list2").css("color", "red");
+      list2();
+      $("#list1").click(function () {
+        $(this).siblings().css("color", "black");
+        $(this).css("color", "red");
+        list1();
+      });
+      $("#list2").click(function () {
+        $(this).siblings().css("color", "black");
+        $(this).css("color", "red");
+        list2();
+      });
+      $("#list3").click(function () {
+        $(this).siblings().css("color", "black");
+        $(this).css("color", "red");
+        list3();
+      });
+    });
+
+    function list1() {
+      $("div.result").empty();
+      $.ajax({
+        type: "get",
+        dataType: "xml",
+        url: "./data/sawonxmlfile.jsp",
+        success: function (data) {
+          let s = '<div class="list1div">';
+          $(data)
+            .find("sawon")
+            .each(function () {
+              let photo = $(this).find("photo").text();
+              let name = $(this).find("name").text();
+              let buseo = $(this).find("buseo").text();
+              let age = $(this).find("age").text();
+              let gender = $(this).find("gender").text();
+              let birthday = $(this).find("birthday").text();
+              let addr = $(this).find("addr").text();
+
+              s += `
+                <figure class="list1fig">
+                    <img src="${photo}" onerror="this.src='../image/noimage1.png'">
+                    <figcaption><b class="figbuseo">${buseo}</b> <b>${name}</b></figcaption>
+                </figure>
+              `;
+            });
+          s += "</div>";
+          $("div.result").append(s);
+        },
+      });
+    }
+    function list2() {
+      $("div.result").empty();
+      $.ajax({
+        type: "get",
+        dataType: "xml",
+        url: "./data/sawonxmlfile.jsp",
+        success: function (data) {
+          $(data)
+            .find("sawon")
+            .each(function (idx, ele) {
+              let s = '<div class="list2">';
+              let photo = $(this).find("photo").text();
+              let name = $(this).find("name").text();
+              let buseo = $(this).find("buseo").text();
+              let age = $(this).find("age").text();
+              let gender = $(this).find("gender").text();
+              let birthday = $(this).find("birthday").text();
+              let addr = $(this).find("addr").text();
+
+              if (photo == "no") {
+                s += "<img src='../image/noimage1.png'>";
+              } else {
+                s += `<img src="${photo}" align="left">`;
+              }
+              s += `
+                사원명 : ${name}<br>
+                부서명 : ${buseo}<br>
+                나 이 : ${age}세<br>
+                주 소 : ${addr}<br>
+                생 일 : ${birthday}<br>
+              `;
+              s += "</div>";
+              $("div.result").append(s);
+            });
+        },
+      });
+    }
+    function list3() {
+      $("div.result").empty();
+      $.ajax({
+        type: "get",
+        dataType: "xml",
+        url: "./data/sawonxmlfile.jsp",
+        success: function (data) {
+          let s = `<table class="table table-bordered">
+                <tr class="table table-danger">
+                    <th>사원명</th>
+                    <th>부서</th>
+                    <th>성별</th>
+                    <th>나이</th>                    
+                    <th>주소</th>
+                    <th>생일</th>
+                </tr>
+                    `;
+
+          $(data)
+            .find("sawon")
+            .each(function () {
+              let photo = $(this).find("photo").text();
+              let name = $(this).find("name").text();
+              let buseo = $(this).find("buseo").text();
+              let age = $(this).find("age").text();
+              let gender = $(this).find("gender").text();
+              let birthday = $(this).find("birthday").text();
+              let addr = $(this).find("addr").text();
+              s += `
+                    <tr>
+                        <td>${name}</td>
+                        <td>${buseo}</td>
+                        <td>${gender}</td>
+                        <td>${age}세</td>
+                        <td>${addr}</td>
+                        <td>${birthday}</td>
+                    </tr>
+                `;
+            });
+          s += "</table>";
+          $("div.result").append(s);
+        },
+      });
+    }
+  </script>
+  <body>
+    <div class="listicon">
+      <i class="bi bi-grid" id="list1"></i>
+      <i class="bi bi-card-list" id="list2"></i>
+      <i class="bi bi-table" id="list3"></i>
+    </div>
+    <img
+      src="../image/mainimage/K-055.png"
+      onerror="this.src='../image/noimage1.png'"
+      width="300"
+    />
+    <input type="text" class="search" />
+    <div class="result" style="margin: 20px">111</div>
+  </body>
+  <script>
+    $(".search").keyup(function () {
+      let search = $(this).text();
+    });
+  </script>
+</html>

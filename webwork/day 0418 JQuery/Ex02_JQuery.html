@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--부트스트랩-->
+<!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!--글꼴-->
+<link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Dongle&family=Gaegu&family=Gowun+Batang&family=Reem+Kufi+Fun:wght@400..700&family=Song+Myung&family=Dancing+Script&family=Tilt+Neon&display=swap" rel="stylesheet">
+ <style>
+        body *{
+            font-family: "Gowun Batang";
+        }
+    </style>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script>
+    $(function(){
+        $("img").css("width","200px");
+        $("img:eq(0)").css({
+            "border":"5px inset tomato",
+            "box-shadow":"5px 5px 5px gray",
+            "margin":"10px"
+        });
+        $("figure.photo1>figcaption").css("font-weight","bold");
+        $("figure.photo1>img").css({
+            "width":"100px",
+            "border":"2px solid green",
+            "cursor":"pointer"
+        });
+        $("#test").css({
+            "position":"absolute",
+            "top":"50px",
+            "left":"250px",
+        });
+        //3 인덱스보다 큰곳
+        $("#test>ul>li:gt(3)").css({"color":"red",
+            "font-family":"Dancing Script"});//gt와 lt는 eq처럼 밖에서 못씀
+        //3보다 작은 곳
+        $("#test>ul>li:lt(3)").css("color","blue");
+        //짝수번지에만 적용(0포함)
+        $("#test>ul>li").even().css("background-color","lightgray");
+        //홀수번지에만 적용
+        $("#test>ul>li").odd().css("background-color","aliceblue")
+
+        //피규어의 이미지에 클릭이벤트 적용
+        //jquery는 배열이더라도 for문을 안돌려도 됨
+        $("figure>img").click(function(){
+            alert("안녕하세요");
+        });
+    });
+</script>
+</head>
+<body>
+    <img src="../image/shop/11.jpg" alt="">
+    <figure class="photo1">
+        <img src="../image/talent/13.jpg" alt="">
+        <figcaption>
+            박신혜입니다
+        </figcaption>
+    </figure>
+    <figure class="photo1">
+        <img src="../image/talent/12.jpg" alt="">
+        <figcaption>
+            박보영입니다
+        </figcaption>
+    </figure>
+    <div id="test">
+        <ul>
+            <li>Java</li>
+            <li>JavaScript</li>
+            <li>HTML5</li>
+            <li>SpringBoot</li>
+            <li>jQuery</li>
+            <li>JSP</li>
+        </ul>
+    </div>
+</body>
+</html>

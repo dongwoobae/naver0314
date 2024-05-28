@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member.dao.CommentDao">
+<select id="selectAllComments">
+	select * from comment order by num
+</select>
+<select id="selectTotalCounts">
+	select count(*) from comment
+</select>
+<insert id="insertComment">
+	insert into comment (userid,myid,passwd,content,writeday) 
+	values (#{userid}, #{myid}, ${passwd}, #{content}, now())
+</insert>
+</mapper> 

@@ -1,0 +1,33 @@
+package day0326;
+
+interface Apple
+{
+	public void one();
+}
+//interface끼리의 상속은 extends
+interface Banana extends Apple
+{
+	public void two();
+}
+
+class Orange implements Banana
+{
+	@Override
+	public void one() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void two() {
+		// TODO Auto-generated method stub
+		
+	}
+}
+public class Ex05_Interface {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

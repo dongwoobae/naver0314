@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2 style="color: blue;">여기는 HTML영역입니다</h2>
+    <script>
+        document.write("<h3>여기는 자바스크립트 영역입니다</h3>")
+        var a=10;
+        console.log("a="+a)
+        if(true){
+            var a=20;//var로 선언시 바깥쪽 a와 같은 변수가 된다. 
+            //그래서 값이 덮어써진다.
+            console.log("a="+a)
+        }
+        console.log("a="+a)
+    </script>
+    
+    <script>
+        //let은 영역형 변수라고 부른다, 괄호안에서 선언된 b는 괄호나오면서 소멸
+        let b=10;
+        //console.log("b="+b)
+        //es6의 템플릿 리터럴(` 백틱)을 이용하여 출력해보자
+        console.log(`b=${b}`)
+        if(true){
+            let b=20;
+            console.log("b="+b)
+        }
+        console.log("b="+b)
+    </script>
+
+    <h2>자바스크립트는 선언시 타입설정을 안한다, var나 let로 선언</h2>
+    <p>자바처럼 int나 char 등으로 선언 안함</p>
+    <script>
+        let s1=10;
+        let s2=3.4;
+        let s3="hello";
+        let s4="5";
+        let s5="6";
+        
+        // console.log(`s1의 타입은${typeof(s1)}`)//``안에서 변수에 ${}로 가능
+        // console.log(`s1의 타입은${typeof(s2)}`)
+        // console.log(`s1의 타입은${typeof(s3)}`)
+        // console.log(`s1의 타입은${typeof(s4)}`)
+        // console.log(`s1의 타입은${typeof(s5)}`)
+
+        
+        console.log(s4+s5);//다만 +는 문자열을 합하는 방식으로 됨
+        //속성으로 부터 값을 가져오면 문자열로 가져옴 그래서 숫자로 바꿔서 +를 해주어야함
+        console.log(s4-s5);//문자 형태의 숫자라도 숫자로 인식해서 나옴 
+        console.log(parseInt(s4)+parseInt(s5))//정수면 parseInt 써도 되는데 소수점 유무가 있을 수 있으면 Number가 낫다
+        console.log(Number(s4)+Number(s5))
+        
+    </script>
+</body>
+</html>

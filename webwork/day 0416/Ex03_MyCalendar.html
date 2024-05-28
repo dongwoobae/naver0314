@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Dongle&family=Gaegu&family=Gowun+Batang&family=Reem+Kufi+Fun:wght@400..700&family=Song+Myung&family=Tilt+Neon&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        body *{
+            font-family: 'Gowun Batang';
+        }
+        div.dateView{
+            margin: 40px 20px;            
+        }
+        div.dateView table{
+            border: 5px groove gray;
+            border-collapse: collapse;
+            width: 500px;
+            font-size: 20px;
+        }
+        div.dateView table thead tr,div.dateView table thead th{
+            height: 50px;
+            background-color: aliceblue;
+            color: brown;
+            border-bottom: 4px double green;
+        }
+        div.dateView table tbody tr,div.dateView table tbody td{
+            height: 50px;
+            border: 1px solid green;
+            text-align: center;
+        }
+        div.dateView table thead th{
+            height: 50px;
+            border: 1px solid green;
+            text-align: center;
+            font-size: 25px;
+        }
+    </style>
+    <script>
+        let dview;
+        window.onload=function(){
+            dview=document.querySelector("div.dateView");
+            
+            calendarView();//처음에 현재 연도,월로 출력
+            //select 이벤트
+            document.getElementById("selYear").onchange=function(){
+                curYear=Number(this.value);
+                calendarView();
+            }
+            document.getElementById("selMonth").onchange=function(){
+                curMonth=Number(this.value);
+                calendarView();
+            }
+        }
+        function calendarView(){
+            //선택한 년도,월의 1일에 해당하는 date 생성
+            let newDate=new Date(curYear,curMonth-1,1);
+            //alert(`${newDate.getFullYear()},${newDate.getMonth()+1},${newDate.getDay()}`);//연도,월,요일 맞게 나오나
+            let tag="";
+            tag+=
+            `
+            <table>
+                <thead>
+                    <tr>
+                        <th>일</th><th>월</th><th>화</th>
+                        <th>수</th><th>목</th><th>금</th><th>토</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>               
+            `;
+            //요일 숫자 구하기
+            let week;
+            week=Number(newDate.getDay());
+
+            //요일 숫자만큼 td반복(처음 요일이 알맞은 곳에 들어갈 수 있게)            
+            for(let i=0;i<week;i++){
+                tag+=`<td></td>`;
+            }
+            
+            //해당년도의 월이 몇일까지 있는지 구하기
+            let endday;
+            switch(curMonth){
+                case 2:
+                    endday=(curYear%4==0&&curYear%100!==0||curYear%400==0?29:28);
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    endday=30;
+                    break;
+                default :
+                    endday=31;
+                    break;
+            }
+            //1일부터 endday까지 출력(단,토요일이 되면 tr닫고 다시 열기)
+            
+            for(let i=0;i<endday;i++){                
+                week++;
+                tag+=`<td style="color:${week%7==1?'red':'black'}">${i+1}</td>`;//삼항연산자로 
+                //리액트는 if문을 못쓰는곳이 있어서 삼항연산자 종종 씀
+                if(week%7==0){
+                    if((i+1)==endday){
+                        tag+=`</tr>`
+                    }
+                    else{
+                        tag+=`</tr><tr>`;
+                    }
+                }
+                // if(week%7==0){
+                //     tag+=`<td>${i+1}</td>`;
+                    
+                // }
+                // }
+                // else if(week%7==1){
+                //     tag+=`<td style="color:red">${i+1}</td>`;                    
+                // }
+                // else
+                //     tag+=`<td>${i+1}</td>`;
+            }
+            if(week%7!=0){//토요일에서 끝나지 않은 경우
+                while(true){
+                    week++;
+                    tag+=`<td></td>`;
+                    if(week%7==0){
+                        tag+=`</tr>`;
+                        break;
+                    }
+                }
+            }
+            
+           
+            tag+="</tbody></table>";
+            dview.innerHTML=tag;
+        }
+    </script>
+</head>
+<body>
+    <div style="margin-left: 100px;">
+        <h2>자바스크립트로 달력 구현하기</h2>
+        <script>
+            let curDate=new Date();//현재날짜
+            let curYear=curDate.getFullYear();//현재년도
+            let curMonth=curDate.getMonth()+1;//현재 월
+        </script>
+       
+        <select id="selYear">
+            <script>
+                for(let y=curYear;y>=1950;y--){
+                    document.write(`<option>${y}</option>`);
+                }
+            </script>
+        </select>
+        년
+        &nbsp;&nbsp;
+        <select id="selMonth">
+            <script>
+                for(let m=1;m<=12;m++){
+                    document.write(`<option ${m==curMonth?"selected":""}>${m}</option>`);
+                }                
+            </script>
+        </select>
+        월 선택
+    </div>
+    <!--script>
+        let date1=new Date(2024,3,16);//month는 0부터라 1 빼서 입력
+        let y=date1.getFullYear();
+        let m=date1.getMonth()+1;
+        let d=date1.getDate();
+        let w=date1.getDay();//일요일이 0~ 토요일이 6 반환
+
+        let s=
+        `
+        ${y}-${m}-${d} 요일숫자:${w}
+        `;
+        document.write("<h2>"+s+"</h2>");      
+
+    </script-->
+    <div class="dateView">
+        <table>
+            
+        </table>
+    </div>
+</body>
+</html>

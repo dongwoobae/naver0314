@@ -1,0 +1,376 @@
+@import
+	url("https://fonts.googleapis.com/css2?family=Dokdo&family=Dongle&family=Gaegu&family=Gowun+Batang&family=Reem+Kufi+Fun:wght@400..700&family=Song+Myung&family=Dancing+Script&family=Tilt+Neon&display=swap")
+	;
+
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Pretendard-Regular';
+}
+
+body.mainpage {
+	min-height: 100vh;
+	background-size: contain;
+	background-color: rgb(235,235,235);
+	background-position: right;
+	overflow:hidden;
+}
+body.homepage {
+	min-height: 100vh;
+	background:url(../image/background.jpg) no-repeat;
+	background-size: contain;
+	background-color: rgb(235,235,235);
+	background-position: 70%;
+	overflow:hidden;
+}
+body.cartmain {
+	min-height: 100vh;
+	background:url(../image/bg.jpg) no-repeat;
+	background-size: contain;
+	background-color: rgb(235,235,235);
+	background-position: right;
+	overflow:hidden;
+}
+span.mainpage-Sentence {
+	font-size:140px;
+	font-weight: 900;
+	position: absolute;
+	left: 10%;
+	z-index: 999;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	text-align:center;
+}
+span.mainpage-Sentence2{
+	font-size:170px;
+	font-weight: 900;
+	position: absolute;
+	left:82%;
+	top:77%;
+	z-index: 999;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+nav.sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 80px;
+	height: 100%;
+	background-color: black;
+	backdrop-filter: blur(40px);
+	padding: 6px 14px;
+	transition: 0.5s;
+}
+
+nav.sidebar.active {
+	width: 260px;
+	--p: 5;
+	z-index: 999;
+}
+
+nav.sidebar .logo-menu {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 70px;
+}
+
+nav.sidebar .logo-menu .logo {
+	font-size: 25px;
+	color: #fff;
+	pointer-events: none;
+	opacity: 0;
+	transition: 0.3s;
+}
+
+nav.sidebar.active .logo-menu .logo {
+	opacity: 1;
+	transition-delay: 0.2s;
+}
+
+nav.sidebar .logo-menu i.toggle-btn {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 40px;
+	height: 40px;
+	font-size: 22px;
+	color: #fff;
+	text-align: center;
+	line-height: 40px;
+	cursor: pointer;
+	transition: 0.5s;
+}
+
+nav.sidebar.active .logo-menu i.toggle-btn {
+	left: 90%;
+}
+
+nav.sidebar .list {
+	margin-top: 10px;
+}
+
+.list .list-item {
+	list-style: none;
+	width: 100%;
+	height: auto;
+	margin: 5px 0;
+	line-height: 50px;
+}
+
+.list .list-item a {
+	display: flex;
+	align-items: center;
+	font-size: 18px;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 6px;
+}
+
+.list .list-item.active a {
+	background: rgba(255, 255, 255, 0.2);
+}
+
+.list .list-item a:hover {
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+.list .list-item a i {
+	min-width: 50px;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+}
+
+.sidebar .link-name {
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.5s ease;
+}
+
+.sidebar.active .link-name {
+	opacity: 1;
+	pointer-events: auto;
+	transition-delay: calc(0.1s * var(--i));
+}
+
+.submenu {
+	align-content: center;
+	list-style: none;
+	color: #fff;
+}
+
+div.loginmain {
+	width: 500px;
+	height: 400px;
+	z-index: 100;
+	position: absolute;
+	left: 30%;
+	top: 20%;
+	background-color: rgba(255, 255, 255, 0.4);
+	backdrop-filter: blur(100px);
+	border: 5px solid white;
+}
+
+div.loginmain>.loginhead {
+	margin-left: 25%;
+	margin-top: 15%;
+}
+
+div.input-control {
+	margin-left: 25%;
+	margin-top: 5px;
+}
+
+h2.logo>a {
+	color: white;
+	text-decoration: none;
+}
+
+main.bicycleProducts {
+	z-index: 200;
+}
+
+div.component-container {
+	padding: 0;
+	color: black;
+	background: transparent;
+	backdrop-filter: blur(60px);
+	border-radius: 10px;
+	width: 320px;
+	height: 320px;
+	margin: 30px;
+	margin-top: 30px
+}
+
+div.component-container>img {
+	margin-left: 10px;
+	width: 80%;
+	height: 65%;
+}
+
+div.component-container:hover {
+	background-color: rgba(0, 0, 0, 0.2);
+	transition: 0.5s;
+}
+
+main.container {
+	background-color: transparent;
+	position: absolute;
+	width: 80%;
+	left: 15%;
+	right: 10%;
+	top: 5%;
+	overflow: hidden;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items:flex-start;
+}
+
+form.formSel {
+	position: relative;
+	left: 85%;
+	margin: 20px;
+}
+
+div.mainselect-form {
+	margin-left: auto;
+	position: fixed;
+	left: 80%;
+	top: 10px;
+	z-index:999;
+}
+
+div.pagination {
+	text-align: center;
+	width: 100px;
+	height: 30px;
+	background-color: rgba(255, 255, 255, 0.1);
+	position: fixed;
+	bottom: 5px;
+	left: 50%;
+	z-index: 999;
+	line-height: 30px;
+	border-radius: 3px;
+}
+
+div.pagination>a {
+	text-decoration: none;
+	color: black;
+}
+
+button.btnApply {
+	background-color: transparent;
+	width: 20px;
+	height: 30px;
+	border: none;
+	line-height: 30px;
+	color: #333;
+	padding: 0;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 13px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	cursor: pointer;
+	border-radius: 4px;
+	transition: background-color 0.3s;
+	align-items:right;
+}
+
+button.btnApply:hover {
+	background-color: #ccc;
+	color: #333;
+}
+
+button.btnApply:active {
+	background-color: #aaa;
+	color: #222;
+}
+
+button.btnApply>img {
+	width: 15px;
+}
+
+div.cartButtons {
+	position: relative;
+	left: 88%;
+	top: 10%;
+	border:none;
+}
+#btnDelCartAll{
+	border:none;
+	cursor:pointer;
+	font-size:20px;
+	background:transparent;
+}
+
+h1.cartnone {
+	color: black;
+	font-size: 140px;
+	z-index:999;
+	position:fixed;
+	top:50px;
+	left:300px;
+	margin:0;
+	padding:0;
+}
+
+h1.totalPrice {
+	color: black;
+	position: relative;
+	left: 45%;
+	top: 10px;
+}
+
+button.popup{
+	position:fixed;
+	right:5%;
+	top:88%;
+	z-index:999;
+	font-size:50px;
+	border:none;
+	background:transparent;
+	cursor:pointer;
+}
+button.popup:hover{
+	background-color: rgba(0, 0, 0, 0.2);
+	transition: 0.5s;
+}
+button.btnDeleteEach{
+	border:none;
+	background:transparent;
+}
+
+img.imgEachDel{
+	width:40px;
+	
+}
+img.imgEachDel:hover{
+	background-color: rgba(0, 0, 0, 0.2);
+	transition: 0.5s;
+}
+#btnDelCartAll>img{
+	width:70px;
+}
+#btnDelCartAll>img:hover{
+	background-color: rgba(0, 0, 0, 0.2);
+	transition: 0.5s;
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="member.dao.MemberDao">
+	<select id="memberTotalCount" resultType="int">
+		select count(*) from memberdb
+	</select>
+	<select id="selectIdCheck" parameterType="String" resultType="int">
+		select count(*) from memberdb where myid=#{searchid}
+	</select>
+	<insert id="insertMember" parameterType="MemberDto">
+		insert into memberdb (name,myid,passwd,addr,hp,email,photo,birthday,gaipday)
+		values (#{name},#{myid},#{passwd},#{addr},#{hp},#{email},#{photo},#{birthday},now())
+	</insert>
+	<!-- MemberDto라고 쓰는게 mybatis-config에서 엘리어스를 해서 가능한 것 -->
+	<select id="selectAllMembers" resultType="MemberDto">
+		select * from memberdb order by num
+	</select>
+	<select id="getOneMember" parameterType="String" resultType="MemberDto">
+		select * from memberdb where myid=#{myid}
+	</select>
+	<delete id="deleteMember" parameterType="int">
+		delete from memberdb where num=#{num}
+	</delete>
+	<update id="updateMember" parameterType="MemberDto">
+		update memberdb set addr=#{addr},hp=#{hp},email=#{email},birthday=#{birthday}
+		where myid=#{myid}
+	</update>
+	<!-- Dto로 보내도 되는데 몇개 안될경우에는 Map 으로 보냄 -->
+	<update id="updatePhoto" parameterType="Map">
+		update memberdb set photo=#{photo} where myid=#{myid}
+	</update>
+	<select id="equalPassCheck" parameterType="Map" resultType="int">
+		select count(*) from memberdb where num=#{num} and passwd=#{passwd}
+	</select>
+</mapper>

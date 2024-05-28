@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+            let car=document.getElementById("car");
+
+            setInterval(function(){
+                let n = parseInt(Math.random()*15)+1;
+                let s=`../image/mycar/mycar${n}.png`;
+                car.setAttribute("src",s);
+            },1000);
+        }
+    </script>
+</head>
+<body>
+    <img src="../image/mycar/mycar1.png" id="car">
+</body>
+</html>

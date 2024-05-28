@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .table{
+            margin-top: 20px;
+            
+        }
+        .table ,.table tr, .table td{
+            border: 1px solid gray;
+            border-collapse: collapse;
+        }
+        .table th{
+            border: 1px solid black;
+            background-color: pink;
+        }
+        .figure{
+            margin-top: 20px;
+            margin-left: 200px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let arr1=["장미꽃","안개꽃","다알리아","국화꽃","프리지아"];
+        document.write(`arr1의 배열의 개수:${arr1.length}<br>`);
+        document.write(`1번지값 출력하기:${arr1[1]}<br>`);
+    </script>
+    <table style="width: 300px;" class="table" id="tb1">
+        <caption><b>배열 arr1 출력</b></caption>
+        <script>
+            let tag="";
+            tag+="<tr>";
+            for(let i=0;i<arr1.length;i++){
+                tag+=`<th>${i+1}</th>`;
+            }
+            tag+="</tr><tr>";
+            for(let i=0;i<arr1.length;i++){
+                tag+=`<td>${arr1[i]}</td>`;
+            }
+            tag+="</tr>"
+            tb1.innerHTML=tag;
+        </script>
+    </table>
+    <script>
+        let arr2=[
+            ["pink","장미꽃"],
+            ["green","안개꽃"],
+            ["orange","국화꽃"],
+            ["gray","프리지아"]
+        ];
+    </script>
+    <table class="table" id="tb2">
+        <caption><b>arr2 2차원 배열</b></caption>
+        <script>
+            for(let i=0;i<arr2.length;i++){
+                let s=
+                `
+                    <tr style="background-color:${arr2[i][0]}">
+                        <th>${i+1}</th>
+                        <td>${arr2[i][1]}</td>
+                    </tr>
+                `;
+                document.write(s);
+            }
+        </script>
+    </table>
+    <script>
+        let arr3=[
+            ["../image/food/8.jpg","햄치즈 샌드위치","19000원"],
+            ["../image/food/11.jpg","망고빙수","22000원"],
+            ["../image/food/4.jpg","간장찜닭","18000원"],
+            ["../image/food/7.jpg","버섯솥밥","13000원"]
+        ]
+        for(let i=0;i<arr3.length;i++){
+
+            let s=`
+            <figure class="figure">
+                <img src="${arr3[i][0]}" width=220 height=auto>
+                <figcaption>
+                    <b>${arr3[i][1]}</b>
+                    <b>${arr3[i][2]}</b>
+                </figcaption>
+            </figure>
+            `;
+            document.write(s);
+        }
+    </script>
+</body>
+</html>

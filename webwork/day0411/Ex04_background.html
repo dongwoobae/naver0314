@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Dancing+Script:wght@400..700&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Pacifico&family=Single+Day&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: 'Dancing Script';
+            font-size: 25px;
+        }
+        div.box div{
+            border: 1px solid gray;
+            width: 300px;
+            height: 300px;
+            margin-bottom: 10px;
+        }
+        div.box>div.a{
+            background-image: url(../image/mycar/mycar13.png);
+            background-size: 30px 30px;
+            background-repeat:repeat;/*기본값이 repeat,repeat-x,repeat-y,no-repeat*/
+        }
+        div.box>div.b{
+            background-image: url(../image/mycar/mycar11.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: right bottom;/*고정위치가 우측하단*/
+        }
+        div.box>div.c{
+            background-image: url(../image/mainimage/K-036.png);
+            background-size: 100% 100%;
+            opacity: 0.5;/*투명도 설정 0.0~1.0으로 설정 가능*/
+        }
+        div.box>div.d{
+            background-image: url(../image/food/11.jpg);
+            background-size: contain;
+            /*auto: 원래 배경 이미지 크기만큼만 표시
+            contain: 지정한 요소 안에 배경이미지가 다 들어오도록 확대/축소
+            cover: 지정한 요소를 다 덮도록 배경이미지를 확대/축소
+            크기 값: 100px 200px 이런식으로 지정
+            백분율: 지정한 요소를 기준으로 지정*/
+        }
+        div.box>div.e{
+            background-image: url(../image/mycar/mycar15.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
+        div.box>div.f{
+            background-image: url(../image/snoopyAvata/s2.JPG);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="a">one</div>
+        <div class="b">two</div>
+        <div class="c">three</div>
+        <div class="d">four</div>
+        <div class="e">five</div>
+        <div class="f">six</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let colors=["red","green","blue","white","black"];
+        for(let c of colors){
+            document.write(c+"<br>");
+        }
+        document.write("<hr>");
+
+        let newColors=colors.slice(2,4);//2번부터 3번까지 반환, 원배열은 건들지 않음
+        //splice는 원배열에서 제거 후 반환하는 형태
+        //slice는 원배열은 그대로 두고 값만 반환하는 형태
+
+        for(let c of colors){
+            document.write(c+"<br>");//colors는 변화가 없음
+        }
+        document.write("<hr>");
+
+        for(let c of newColors){
+            document.write(c+"<br>");//blue,white만 출력
+        }
+    </script>
+</body>
+</html>

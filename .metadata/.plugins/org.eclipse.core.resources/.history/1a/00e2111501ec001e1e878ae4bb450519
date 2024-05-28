@@ -1,0 +1,35 @@
+package day0327;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Ex08_MemberList {
+	List<MemberDto> list = new ArrayList<MemberDto>();
+	Scanner sc = new Scanner(System.in);
+	static final String FILENAME = "c:/naver03/member.txt";
+	
+	public Ex08_MemberList() {
+		// TODO Auto-generated constructor stub
+		memberReadFile();
+	}
+	
+	//파일읽기-처음 생성시 자동으로 파일에서 멤버 읽어오기
+	public void memberReadFile()
+	{
+		
+	}
+	
+	//종료시 파일 저장
+	public void memberSaveFile()
+	{
+		
+	}
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

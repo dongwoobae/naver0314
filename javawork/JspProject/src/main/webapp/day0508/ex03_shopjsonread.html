@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!--�۲�-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dokdo&family=Dongle&family=Gaegu&family=Gowun+Batang&family=Reem+Kufi+Fun:wght@400..700&family=Song+Myung&family=Dancing+Script&family=Tilt+Neon&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
+    />
+    <style>
+      @font-face {
+        font-family: "Pretendard-Regular";
+        src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+          format("woff");
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      body * {
+        font-family: "Pretendard-Regular";
+      }
+      div.listicon {
+        text-align: center;
+        font-size: 2em;
+      }
+      div.listicon i {
+        cursor: pointer;
+      }
+      div.listicon i:hover {
+        color: pink;
+        text-shadow: 3px 3px 3px gray;
+        transition: 0.5s;
+      }
+      figure.list1 {
+        float: left;
+        width: 200px;
+        border: 3px inset gray;
+        margin: 10px;
+      }
+      figure.list1 img {
+        width: 180px;
+        height: 200px;
+      }
+      figure.list1 figcaption {
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+      }
+      div.list2 {
+        width: 400px;
+        height: 150px;
+        margin-bottom: 10px;
+        border: 3px groove orange;
+        border-radius: 20px;
+        padding: 10px;
+      }
+      div.list2 img {
+        width: 100px;
+        height: 130px;
+        margin-right: 10px;
+        border-radius: 20px;
+      }
+      table.table{
+      width:600px;
+      }
+      table td,th{
+      	text-align:center;
+      }
+    </style>
+    <script>
+      $(function () {
+        $("#list1").css("color", "red");
+        list1();
+
+        $("#list1").click(function () {
+          $(this).siblings().css("color", "black");
+          $(this).css("color", "red");
+          list1();
+        });
+
+        $("#list2").click(function () {
+          $(this).siblings().css("color", "black");
+          $(this).css("color", "red");
+          list2();
+        });
+
+        $("#list3").click(function () {
+          $(this).siblings().css("color", "black");
+          $(this).css("color", "red");
+          list3();
+        });
+        
+        $("div.result").on("click",".delbtn",function(){
+        	//shopidx 가져오기
+        	let shopidx=$(this).attr("shopidx");
+        	$.ajax({
+        		type:"get",
+        		url:"./data/shopdelete.jsp",
+        		//data:"shopidx="+shopidx,//방법1
+        		data:{"shopidx":shopidx},//방법2
+        		dataType:"html",
+        		success:function(){
+        			//삭제 성공 후 list3 다시 호출
+        			alert("삭제 성공");
+        			list3();
+        		}
+        	});
+        });
+      });
+      function list1() {
+        $("h2.title>b").html(
+          "<img src='../image/snoopyAvata/s3.JPG' width='50'> MyShop 사진 위주로 보기"
+        );
+        $("div.result").empty();
+        $.ajax({
+          type: "get",
+          dataType: "json",
+          url: "./data/shopjsondata.jsp",
+          success: function (data) {
+            $.each(data, function (idx, ele) {
+              let s = `
+                <figure class="list1">
+                    <img src="${ele.sphoto}">
+                    <figcaption>${ele.sname}</figcaption>
+                    </figure>
+                `;
+              $("div.result").append(s);
+            });
+          },
+        });
+      }
+      function list2() {
+        $("h2.title>b").html(
+          "<img src='../image/snoopyAvata/s6.JPG' width='50'> MyShop div로 기본 정보만 보기"
+        );
+        $("div.result").empty();
+        $.ajax({
+          type: "get",
+          dataType: "json",
+          url: "./data/shopjsondata.jsp",
+          success: function (data) {
+            $.each(data, function (idx, ele) {
+              let s = `
+                    <div class="list2" style="background-color:${ele.scolor}">
+                        <img src="${ele.sphoto}" align="left">
+                        상품명 : ${ele.sname}<br>
+                        가격 : ${ele.sprice}<br>
+                        수량: ${ele.scount}<br>
+                        입고일: ${ele.writeday}
+                    </div>
+                `;
+              $("div.result").append(s);
+            });
+          },
+        });
+      }
+      function list3() {
+        $("h2.title>b").html(
+          "<img src='../image/snoopyAvata/s10.JPG' width='50'> MyShop table 형식으로 보기"
+        );
+        $("div.result").empty();
+        $.ajax({
+          type: "get",
+          dataType: "json",
+          url: "./data/shopjsondata.jsp",
+          success: function (data) {
+            let s = `
+                <table class="table table-striped">
+                    <caption align="top"><b>상품 상세보기</b></caption>
+                    <tr class="table-success">
+                        <th width="50">번호</th>
+                        <th width="100">상품명</th>
+                        <th width="100">가격</th>
+                        <th width="50">수량</th>
+                        <th width="150">입고일</th>
+                        <th width="50">삭제</th>
+                    </tr>
+                `;
+            $.each(data, function (idx, ele) {
+            	s+=`
+            	<tr>
+            		<td>${idx+1}</td>
+            		<td>${ele.sname}</td>
+            		<td>${ele.sprice}</td>
+            		<td>${ele.scount}</td>
+            		<td>${ele.writeday}</td>
+            		<td align="center">
+            			<button type="button" class="btn btn-sm btn-danger delbtn" shopidx="${ele.shopidx}">삭제</button>
+            		</td>
+            	</tr>
+            	`;
+            });
+            s += "</table>";
+            $("div.result").html(s);
+          },
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div class="listicon">
+      <i class="bi bi-grid" id="list1"></i>
+      <i class="bi bi-card-list" id="list2"></i>
+      <i class="bi bi-table" id="list3"></i>
+    </div>
+    <h2 class="title" style="margin: 30px 100px"><b></b></h2>
+    <div class="result" style="margin: 10px">111</div>
+  </body>
+</html>

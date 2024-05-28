@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><!--부트스트랩-->
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!--글꼴-->
+    <link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Dongle&family=Gaegu&family=Gowun+Batang&family=Reem+Kufi+Fun:wght@400..700&family=Song+Myung&family=Dancing+Script&family=Tilt+Neon&display=swap" rel="stylesheet">
+     <style>
+            body *{
+                font-family: "Gowun Batang";
+            }
+            div.a{
+                float: left;
+                width: 100px;
+                height: 60px;
+                line-height: 60px;
+                text-align: center;
+                border: 2px solid black;
+                margin-right: 5px;
+            }
+        </style>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+        $(function(){
+            //$.each: 배열갯수만큼 반복시켜주는 함수
+            let colors=["pink","gray","orange","yellow","green","magenta","tomato"];
+            $.each(colors,function(idx,ele){
+                $("div.a").eq(idx).text(ele).css("background-color",ele);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+</body>
+</html>

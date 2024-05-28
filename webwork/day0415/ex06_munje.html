@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+            let photo=document.getElementById("photo");
+            //점점 작게 이벤트 (너비 10씩 감소)
+            document.getElementById("btnsmaller").onclick=function(){
+                let w=photo.getAttribute("width");
+                w-=10;
+                photo.setAttribute("width",w);
+            }
+            //점점 크게 이벤트 (너비 10씩 증가)
+            document.getElementById("btnbigger").onclick=function(){
+                let w=Number(photo.getAttribute("width"));
+                w+=10;
+                photo.setAttribute("width",w);
+            }
+            //select 이벤트: 사진변경, 라벨 얻어서 msg에 출력
+            document.getElementById("selphoto").onchange=function(){
+                let p=this.value;
+                let name=this.options[this.selectedIndex].label;
+
+                photo.setAttribute("src",p);
+                msg.innerHTML=`<b>${name}입니다</b>`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>문제: 이미지 크기 변경 및 사진 변경하기</h2>
+    <button type="button" id="btnsmaller">점점작게</button>
+    <button type="button" id="btnbigger">점점크게</button>
+    <select id="selphoto">
+        <option value="../image/talent/15.jpg">설현</option>
+        <option value="../image/talent/17.jpg">신민아</option>
+        <option value="../image/talent/19.jpg">수지</option>
+        <option value="../image/talent/12.jpg">박보영</option>
+    </select>
+    <br><br>
+    <img src="../image/talent/15.jpg" id="photo" width="200">
+    <h2 id="msg">설현입니다</h2>
+</body>
+</html>

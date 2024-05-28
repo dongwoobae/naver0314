@@ -1,0 +1,12 @@
+package day0327;
+/*
+ * 1. 이름추가 2.이름삭제 3.이름출력 4.
+ */
+public class Ex07_Vector {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<bean id="person" class="study.ex3.Person">
+		<constructor-arg value="배동우"></constructor-arg>
+		<property name="phone" value="010-5586-5817"></property>
+	</bean>
+	
+	<!-- scope="singleton"이 생략되어 있는 것 -->
+	<bean id="cart" class="study.ex3.MyCart" scope="prototype">
+		<constructor-arg value="경량 바람막이"/>
+		<constructor-arg value="170000"/>
+		<property name="person" ref="person"></property>
+	</bean>	
+</beans>

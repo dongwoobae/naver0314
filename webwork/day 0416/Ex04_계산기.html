@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Dancing+Script:wght@400..700&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Pacifico&family=Single+Day&display=swap" rel="stylesheet">
+
+    <title>Document</title>
+    <style>
+        body *{
+            font-family: 'Dancing Script';
+        }
+        div.calc{
+            margin: 30px 50px;
+        }
+        div.calc table{
+            border: 7px solid gray;
+            width: 400px;
+            border-collapse: collapse;
+        }
+        div.calc table tr, div.calc table td{
+            border: 1px solid gray;
+            text-align: center;
+            height: 70px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .btna{
+            width: 90%;
+            height: 90%;
+            font-size: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        //전역 변수 
+        let beFirst=true;//처음 숫자를 클릭시 또는 연산자를 클릭후 ture,true일 경우
+        let bDot=false;//소수점 찍었는지 여부 판단
+        let su1,su2;
+        let op;//연산자
+        window.onload=function(){
+            numview=document.querySelector(".numview");            
+        }
+
+        //숫자 클릭시 호출되는 함수
+        function fnNumber(num){
+            //beFirst가 true면 새로찍고, false면 누적(추가)하고
+            if(beFirst&&!bDot){
+                numview.innerText=num;
+                beFirst=false;
+            }
+            else{
+                numview.innerText+=num;
+            }
+        }
+        function fnDot(){
+            if(!bDot){
+                numview.innerText+='.';
+                bDot=true;
+            }
+            
+        }
+        function fnBack(){
+            //substring,length,charAt 사용해서 한글자씩 지우기
+            //마지막 글자가 .면 bDot=flase
+            //모두 지워지면 0으로
+            let n=numview.innerText;
+            let len=n.length;
+            let lastChar=n.charAt(len-1);
+            let s = n.substring(0,len-1);
+
+            if(s.length==0){
+                numview.innerText="0";
+                beFirst=true;
+            }else{
+                numview.innerText=s;                
+            }
+            if(lastChar="."){
+                bDot=false;
+            }
+        }
+        function fnEqual(){
+            //현재창의 숫자를 su2에 저장한다
+            su2=Number(numview.innerText);
+            /*if(op=='+')
+                su1+=su2;
+            else if(op=='-')
+                su1-=su2;
+            else if(op=='*')
+                su1*=su2;
+            else if(op=='/')
+                su1/=su2;*/
+            su1=eval(su1+op+su2);//수식을 문자열로 넣으면 결과가 나온다
+
+            //결과 su1을 다시 출력
+             numview.innerText=su1;
+             op="";
+             bDot=false;
+             beFirst=true;
+        }
+        function fnSign(){
+            numview.innerText=numview.innerText*(-1);
+           
+            if(beFirst&&numview.innerText==0){
+                numview.innerText='-1';
+                beFirst=false;
+            }
+        
+        
+        }
+        function fnCE(){
+            su2=0;
+            numview.innerText=0;
+            beFirst=true;
+            bDot=flase;
+        }
+        function fnC(){
+            su1=0;
+            su2=0;
+            op="";
+            numview.innerText=0;
+            beFirst=true;
+            bDot=false;
+        }
+        function fnOper(oper){
+            //연산자를 전역변수 op에 저장후 beFirst를 true로 해야 그 다음 숫자가 새로 찍힌다
+            su1=Number(numview.innerText);
+
+            op=oper;
+            beFirst=true;
+            bDot=false;
+        }
+    </script>
+</head>
+<body>
+    <div class="calc">
+        <table>
+            <caption>간단 계산기</caption>
+            <tr>
+                <td colspan="4" class="numview">0</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="+/-" onclick="fnSign()" class="btna">
+                </td>
+                <td>
+                    <input type="button" value="CE" onclick="fnCE()" class="btna">
+                </td>
+                <td>
+                    <input type="button" value="C" onclick="fnC()" class="btna">
+                </td>
+                <td>
+                    <input type="button" value="Back" onclick="fnBack()" class="btna">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="7" onclick="fnNumber(this.value)" class="btna">
+                </td>
+                <td>
+                    <input type="button" value="8" onclick="fnNumber(this.value)" class="btna">
+                </td>
+                <td>
+                    <input type="button" value="9" onclick="fnNumber(this.value)" class="btna">
+                </td>
+                <td>
+                    <input type="button" value="/" onclick="fnOper('/')" class="btna">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="4" onclick="fnNumber(this.value)" class="btna">
+                </td>
+                <td>
+                    <input type="button" value="5" onclick="fnNumber(this.value)" class="btna">
+                </td>
+                <td>
+                    <input type="button" value="6" onclick="fnNumber(this.value)" class="btna">
+                </td>
+                <td>
+                    <input type="button" value="X" onclick="fnOper('*')" class="btna">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="1" onclick="fnNumber(this.value)" class="btna">
+                </td>
+                <td>
+                    <input type="button" value="2" onclick="fnNumber(this.value)" class="btna">
+                </td>
+                <td>
+                    <input type="button" value="3" onclick="fnNumber(this.value)" class="btna">
+                </td>
+                <td>
+                    <input type="button" value="+" onclick="fnOper('+')" class="btna">
+                </td>
+            </tr>
+            \<tr>
+                <td>
+                    <input type="button" value="0" onclick="fnNumber(this.value)" class="btna">
+                </td>
+                <td>
+                    <input type="button" value="." onclick="fnDot()" class="btna">
+                </td>
+                <td>
+                    <input type="button" value="=" onclick="fnEqual()" class="btna"  style="color: red;">
+                </td>
+                <td>
+                    <input type="button" value="-" onclick="fnOper('-')" class="btna">
+                </td>
+            </tr>
+        </table        
+    </div>
+</body>
+</html>

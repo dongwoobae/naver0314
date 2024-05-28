@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4f08ba68-d816-4ddd-a1f8-5ede714d3f4e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../dbwork/scott_0514.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../dbwork/scott_0514.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springwork/Servers/Tomcat v9.0 Server at localhost-config/server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springwork/Servers/Tomcat v9.0 Server at localhost-config/server.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springwork/SpringMVC_Ex01/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/../springwork/SpringMVC_Ex01/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springwork/SpringMVC_Ex01/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../springwork/SpringMVC_Ex01/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springwork/SpringMVC_Ex01/target/m2e-wtp/web-resources/META-INF/maven/com.bitcamp/study/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../springwork/SpringMVC_Ex01/target/m2e-wtp/web-resources/META-INF/maven/com.bitcamp/study/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sts3/sts-bundle/sts-3.9.18.RELEASE/configuration/.settings/com.genuitec.eclipse.startup.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../../sts3/sts-bundle/sts-3.9.18.RELEASE/configuration/.settings/com.genuitec.eclipse.startup.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sts3/sts-bundle/sts-3.9.18.RELEASE/configuration/.settings/com.genuitec.eclipse.webclipse.evergreen.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/../../sts3/sts-bundle/sts-3.9.18.RELEASE/configuration/.settings/com.genuitec.eclipse.webclipse.evergreen.prefs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2gqeCMo1Vhtmmlg5TVR4qcle6Fw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/git/naver0314devops11/bootwork/BootMybatisTilesV3",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4f08ba68-d816-4ddd-a1f8-5ede714d3f4e" name="Changes" comment="" />
+      <created>1716429406219</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1716429406219</updated>
+      <workItem from="1716429407236" duration="71000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

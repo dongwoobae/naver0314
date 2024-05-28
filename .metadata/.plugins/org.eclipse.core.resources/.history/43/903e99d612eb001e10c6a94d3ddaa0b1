@@ -1,0 +1,55 @@
+package day0326;
+
+abstract class Command
+{
+	abstract public void process();
+}
+
+class List extends Command
+{
+	@Override
+	public void process() {
+		// TODO Auto-generated method stub
+	System.out.println("데이터 목록을 출력합니다");	
+	}
+}
+
+class Delete extends Command
+{
+	@Override
+	public void process() {
+		// TODO Auto-generated method stub
+	System.out.println("데이터 항목을 삭제합니다");	
+	}
+}
+
+class Insert extends Command
+{
+	@Override
+	public void process() {
+		// TODO Auto-generated method stub
+	System.out.println("데이터 추가합니다");	
+	}
+}
+
+class Update extends Command
+{
+	@Override
+	public void process() {
+		// TODO Auto-generated method stub
+	System.out.println("데이터 항목을 수정합니다");	
+	}
+}
+public class Ex03_Abstract {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		writeDown(new List());
+		
+	}
+public static void writeDown(Command m)
+{
+	m.process();
+}
+}

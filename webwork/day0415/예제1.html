@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function color(){
+        let r=Math.random()*255+1;
+        let g=Math.random()*255+1;
+        let b=Math.random()*255+1;
+    }
+    window.onload=function(){
+        let txt1=document.getElementById("txt1");
+        //이벤트
+        txt1.onkeyup=function(e){
+            document.getElementById("msg").innerText=e.target.value;
+        }
+    }
+    </script>
+</head>
+<body>
+    <div>
+    <h1>color flippers</h1>
+    <script>
+        
+    </script>
+        <button onclick="color()" width="100px">color flip</button>
+    </div>
+    <input type="text" id="txt1">
+    <br>
+    <h2 id="msg">result</h2>
+    <br>
+    <input type="text" id="txt2">
+    <br>
+    <div id="msg2">result</div>
+    <script>
+        document.getElementById("txt2").onkeyup=function(){
+            msg2.innerHTML=`<b>${this.value}</b>`;
+        }
+    </script>
+</body>
+</html>

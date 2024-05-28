@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- Dto이름을 간단히 해주는것 -->
+<configuration>
+	<typeAliases>
+		<typeAlias type="member.dto.MemberDto" alias="MemberDto" />
+		<typeAlias type="member.dto.CommentDto" alias="CommentDto"/>
+	</typeAliases>
+</configuration>

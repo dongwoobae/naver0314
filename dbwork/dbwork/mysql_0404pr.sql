@@ -1,0 +1,12 @@
+use opentutorials;
+select * from topic;
+insert into topic values (1,'총균쇠','모름','1987-09-26','djdj','총균쇠임');
+insert into topic values (2,'어패런트','모름','1982-10-06','apparent','');
+insert into topic values (3,'자바끝내기','sw협회','2018-09-26','sw협회','sw협회');
+insert into topic values (4,'차라투스트라는 이렇게 말했다','말했다','1927-04-26','니체','어록');
+select * from topic;
+RENAME TABLE opentutorials.topic TO bit701.topic;
+select * from topic;
+create database opentutorials;
+rename table bit701.topic to opentutorials.topic;
+commit;

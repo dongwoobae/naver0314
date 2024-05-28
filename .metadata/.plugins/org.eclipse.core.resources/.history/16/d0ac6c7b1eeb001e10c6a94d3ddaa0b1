@@ -1,0 +1,84 @@
+package day0326;
+
+interface StudyInter
+{
+	public void javaStudy();
+	public void springStudy();
+}
+
+interface PlayInter
+{
+	public void run();
+	public void game();
+}
+
+class MyStudy implements StudyInter
+{
+
+	@Override
+	public void javaStudy() {
+		// TODO Auto-generated method stub
+		System.out.println("자바공부");
+	}
+
+	@Override
+	public void springStudy() {
+		// TODO Auto-generated method stub
+		System.out.println("스프링 공부");
+	}
+	public void reactStudy()
+	{
+		System.out.println("리액트 공부");
+	}
+	
+	
+}
+
+class MyPlay implements PlayInter
+{
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		System.out.println("조깅하기");
+	}
+
+	@Override
+	public void game() {
+		// TODO Auto-generated method stub
+		System.out.println("게임하기");
+	}
+	public void hikiing()
+	{
+		System.out.println("등산하기");
+	}
+}
+public class Ex07_Interface {
+
+	static public void study(StudyInter s)
+	{
+		s.javaStudy();
+		s.springStudy();
+	}
+	static public void play(PlayInter p)
+	{
+		p.run();
+		p.game();
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		StudyInter stu = new MyStudy();
+		stu.springStudy();
+		stu.javaStudy();
+		((MyStudy)stu).reactStudy();
+		
+		PlayInter pl = new MyPlay();
+		pl.run();
+		pl.game();
+		((MyPlay)pl).hikiing();
+		
+		play(pl);
+	}
+
+}

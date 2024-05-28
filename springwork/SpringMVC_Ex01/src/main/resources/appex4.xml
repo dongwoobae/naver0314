@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- <bean id="hello" class="anno.study.ex4.Hello"/> -->
+	<!-- 어노테이션 사용시 해당 패키지를 등록해야 인식함 -->
+	<!-- * 사용 가능, 여러 패키지 등록시 ,(comma)로 여러개 등록이 가능하다 -->
+	<context:component-scan base-package="anno.*"/>
+	
+	<!-- <bean id="ktire" class="anno.study.ex4.KoreaTire"/>
+	<bean id="ctire" class="anno.study.ex4.CanadaTire"/>
+	
+	<bean id="car" class="anno.study.ex4.Car">
+		<constructor-arg ref="ktire"/>
+		<property name="carName" value="Benz C220d"/>
+	</bean> -->
+	
+</beans>

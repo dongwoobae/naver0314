@@ -1,0 +1,9 @@
+package day0327;
+//Dto 라는게 data class 를 의미
+public class MemberDto {
+	private String name;
+	private String hp;
+	private String addr;
+	private String blood;
+	
+}

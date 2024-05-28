@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #ex1,#ex2{
+            background-color: paleturquoise;
+            width: 120px;
+            height: 20px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        #ex1:hover,#ex2:hover{
+            width: 350px;
+
+        }
+        /*width 변경시 효과*/
+        #ex1{
+            transition-property: width;
+            transition-duration: 300ms;/*2초 동안 효과 유지*/
+        }
+        #ex2{/*
+            transition-property: width;
+            transition-duration: 3s;*/
+            transition: width 1s;/*위 내용을 이처럼 줄여쓸 수도 있음*/
+        }
+        #ex3 img{
+            width: 120px;
+            opacity: 0.5;
+            border: 5px solid pink;
+            transform: rotate(15deg);
+            cursor: pointer;
+            transition: all 3s;/*이미지에 마우스 올리면 3개의 속성이 모두 변하면서 transition 적용*/
+        }
+
+        #ex3 img:hover{
+            opacity: 1.0;
+            border-color: gray;
+            transform: rotate(-30deg);
+        }
+    </style>
+</head>
+<body>
+    <p id="ex1">Transition Test #1!!</p>
+    <p id="ex2">Transition Test #2!!</p>
+    <p id="ex3">
+        <img src="../image/mycar/mycar9.png" alt="">
+    </p>
+</body>
+</html>

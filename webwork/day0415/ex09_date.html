@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+            setInterval(function(){
+                //기본이 1/1000 초
+                //1초마다 함수 실행
+                let date=new Date();
+                let hh=date.getHours();
+                let mm=date.getMinutes();
+                let ss=date.getSeconds();
+                document.getElementById("timer").innerHTML=`${hh}:${mm}:${ss}`;
+            },1000)
+        }
+    </script>
+</head>
+<body>
+    <h1>
+        오늘 날짜:
+        <script>
+            let date=new Date();
+            let y=date.getFullYear();
+            let m=date.getMonth();
+            let d=date.getDate();
+
+            document.write(`${y}-${mm+1}-${d}`)
+        </script>
+    </h1>
+    <h1>
+        현재시간:
+        <script>
+            let hh=date.getHours();
+            let mm=date.getMinutes();
+            let ss=date.getSeconds();
+            document.write(`${hh}:${mm}:${ss}`);
+        </script>
+    </h1>
+    <h1 id="timer">
+        <script>
+            document.write(`${hh}:${mm}:${ss}`);
+        </script>
+    </h1>
+</body>
+</html>
