@@ -32,6 +32,7 @@
         history.back();
     </script>
 </c:if>
+<c:set var="stPath" value="https://kr.object.ncloudstorage.com/bitcamp-bucket-56/photocommon"/>
 <script>
     function preview(tag) {
         if (tag.files[0]) {
@@ -71,7 +72,7 @@
             <td>
                 <input type="text" name="subject" required="required" value="${dto.subject}" class="form-control">
             </td>
-            <td rowspan="4" style="border-color: white"><h4>Preview</h4><img src="../save/${dto.uploadphoto}"
+            <td rowspan="4" style="border-color: white"><h4>Preview</h4><img src="${stPath}/${dto.uploadphoto}"
                                                                              onerror="this.src='../image/noimage1.png'"
                                                                              id="showimg1" style="width: 200px;"><br>
             <b>사진을 선택하지 않으면 기존사진이 유지됩니다</b></td>

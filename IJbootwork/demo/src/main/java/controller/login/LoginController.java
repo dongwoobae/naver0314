@@ -45,4 +45,6 @@ public class LoginController {
     public void memberLogout(HttpSession session) {
         session.removeAttribute("loginok");
     }
+
+
 }

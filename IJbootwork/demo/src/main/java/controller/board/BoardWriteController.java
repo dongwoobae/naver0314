@@ -3,6 +3,7 @@ package controller.board;
 import data.dto.ReBoardDto;
 import data.service.MemberService;
 import data.service.ReBoardService;
+import naver.cloud.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,11 @@ public class BoardWriteController {
     private ReBoardService reBoardService;
     @Autowired
     private MemberService   memberService;
+    //naver storage에 저장하기 위한 변수들
+    private String bucketName="bitcamp-bucket-56";
+    private String folderName="photocommon";
+    @Autowired
+    private NcpObjectStorageService storageService;
 
     @GetMapping("/writeform")
     public String writeForm(
@@ -59,20 +65,21 @@ public class BoardWriteController {
             HttpServletRequest request,
             HttpSession session
             ){
-        String savePath=request.getSession().getServletContext().getRealPath("/save");
-        //업로드 하지 않았을 경우 "no", 업로드 했을 경우 랜덤파일명으로 저장
-        String photo = upload.getOriginalFilename();
-        if(photo.equals("")){
-            photo="no";
-        }else{
-            String ext = photo.substring(photo.lastIndexOf("."));
-            photo = UUID.randomUUID()+"."+ext;
-            try {
-                upload.transferTo(new File(savePath+"/"+photo));
-            } catch (IOException|IllegalStateException e) {
-                throw new RuntimeException(e);
-            }
-        }
+//        String savePath=request.getSession().getServletContext().getRealPath("/save");
+//        //업로드 하지 않았을 경우 "no", 업로드 했을 경우 랜덤파일명으로 저장
+//        String photo = upload.getOriginalFilename();
+        String photo=storageService.uploadFile(bucketName,folderName,upload);
+//        if(photo.equals("")){
+//            photo="no";
+//        }else{
+//            String ext = photo.substring(photo.lastIndexOf("."));
+//            photo = UUID.randomUUID()+"."+ext;
+//            try {
+//                upload.transferTo(new File(savePath+"/"+photo));
+//            } catch (IOException|IllegalStateException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
         dto.setUploadphoto(photo);
         //세션으로 부터 아이디 얻기
         String loginid=(String)session.getAttribute("loginid");
@@ -81,8 +88,8 @@ public class BoardWriteController {
         String writer=memberService.getMemberById(loginid).getName();
         dto.setWriter(writer);
         //확인할거... 추가후 저장된 시퀀스 값
-        //지금 넣는 num이 출력됨
-        System.out.println("num="+dto.getNum());
+//        //지금 넣는 num이 출력됨
+//        System.out.println("num="+dto.getNum());
         reBoardService.insertBoard(dto);
 
 
@@ -109,21 +116,22 @@ public class BoardWriteController {
             @RequestParam int currentPage,
             HttpServletRequest request
     ){
-        String uploadphoto = upload.getOriginalFilename();
-
-        if(!uploadphoto.equals("")){
-        String savePath=request.getSession().getServletContext().getRealPath("/save");
-        String ext = uploadphoto.substring(uploadphoto.lastIndexOf("."));
-        uploadphoto = UUID.randomUUID()+"."+ext;
-        //업로드
-            try {
-                upload.transferTo(new File(savePath+"/"+uploadphoto));
-            } catch (IOException | IllegalStateException e) {
-                throw new RuntimeException(e);
-            }
-        }else{
-            uploadphoto=dto.getUploadphoto();
-        }
+//        String uploadphoto = upload.getOriginalFilename();
+//
+//        if(!uploadphoto.equals("")){
+//        String savePath=request.getSession().getServletContext().getRealPath("/save");
+//        String ext = uploadphoto.substring(uploadphoto.lastIndexOf("."));
+//        uploadphoto = UUID.randomUUID()+"."+ext;
+//        //업로드
+//            try {
+//                upload.transferTo(new File(savePath+"/"+uploadphoto));
+//            } catch (IOException | IllegalStateException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }else{
+//            uploadphoto=dto.getUploadphoto();
+//        }
+        String uploadphoto=storageService.uploadFile(bucketName,folderName,upload);
         //dto의 사진변경
         dto.setUploadphoto(uploadphoto);
         //업데이트 해주기

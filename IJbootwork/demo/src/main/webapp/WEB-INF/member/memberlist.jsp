@@ -24,6 +24,7 @@ body * {
 }
 </style>
 </head>
+<c:set var="stPath" value="https://kr.object.ncloudstorage.com/bitcamp-bucket-56/photocommon"/>
 <body>
 	<!--절대 주소로 맵핑이 바뀌어도 이미지 경로가 잘 나올수 있게-->
 	<%-- <img src="<%=request.getContextPath()%>/image/mycar/mycar13.png" alt="">
@@ -37,15 +38,15 @@ body * {
 		</span>
 	</h2>
 	<!-- admin 이 아닌계정으로 로그인을 했거나 로그인상태가 아닐경우 보여질 메세지 -->
-	<c:if
-		test="${sessionScope.loginok==null or sessionScope.loginid!='admin'}">
-		<h2>
-			<b> 전체 회원 명단은 관리자만 확인 가능합니다 </b>
-		</h2>
-	</c:if>
+<%--	<c:if--%>
+<%--		test="${sessionScope.loginok==null or sessionScope.loginid!='admin'}">--%>
+<%--		<h2>--%>
+<%--			<b> 전체 회원 명단은 관리자만 확인 가능합니다 </b>--%>
+<%--		</h2>--%>
+<%--	</c:if>--%>
 	<!-- admin 계정으로 로그인시에만 전체 명단을 확인할수 있다 -->
-	<c:if
-		test="${sessionScope.loginok!=null and sessionScope.loginid=='admin'}">
+<%--	<c:if--%>
+<%--		test="${sessionScope.loginok!=null and sessionScope.loginid=='admin'}">--%>
 		<table class="table table-striped" style="width: 500px;">
 			<caption align="top">
 				<h3>
@@ -62,7 +63,7 @@ body * {
 			<c:forEach var="dto" items="${list}" varStatus="i">
 				<tr>
 					<td align="center">${i.count}</td>
-					<td><img src="../save/${dto.photo}" class="rounded-circle"
+					<td><img src="${stPath}/${dto.photo}" class="rounded-circle"
 						style="width: 40px; height: 40px;"
 						onerror="this.src='../image/noimage1.png'"> ${dto.name}</td>
 					<td>${dto.myid}</td>
@@ -74,6 +75,6 @@ body * {
 				</tr>
 			</c:forEach>
 		</table>
-	</c:if>
+<%--	</c:if>--%>
 </body>
 </html>

@@ -29,5 +29,7 @@
         insert into memberdb (name,myid,passwd,addr,hp,email,photo,birthday,gaipday)
         values (#{name},#{myid},#{passwd},#{addr},#{hp},#{email},#{photo},#{birthday},now())
     </insert>
-
+    <select id="getIdCheck" parameterType="String" resultType="int">
+        select count(*) from memberdb where myid=#{searchid}
+    </select>
 </mapper>

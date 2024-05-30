@@ -50,3 +50,4 @@ myid varchar(20),
 content varchar(1000),
 writeday datetime,
 foreign key(num) references reboard(num) on delete cascade);
+SELECT b.myid,m.photo FROM boardanswer b INNER JOIN memberdb m ON b.myid=m.myid where b.num=2;

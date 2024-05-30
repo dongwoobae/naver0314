@@ -51,4 +51,7 @@ public class MemberService {
 	public void insertMember(MemberDto dto){
 		memInter.insertMember(dto);
 	}
+	public int getIdCheck(String searchid) {
+		return memInter.getIdCheck(searchid);
+	}
 }

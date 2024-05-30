@@ -38,6 +38,7 @@ td, th {
 }
 </style>
 </head>
+<c:set var="stPath" value="https://kr.object.ncloudstorage.com/bitcamp-bucket-56/photocommon"/>
 <body>
 	<table class="table table-bordered" style="width: 500px;">
 		<thead class="table table-danger">
@@ -47,7 +48,7 @@ td, th {
 			</tr>
 		</thead>
 		<tr>
-			<td rowspan="5"><img src="../save/${dto.photo}" width="200"
+			<td rowspan="5"><img src="${stPath}/${dto.photo}" width="200"
 				id="photo"></td>
 		</tr>
 		<tr>
@@ -183,6 +184,7 @@ td, th {
 		$("#photoupload").change(function(){
 			let num="${dto.num}";
 			let form = new FormData();
+			let stpath="${stPath}";
 			
 			form.append("upload",$("#photoupload")[0].files[0]);
 			form.append("num",num);
@@ -196,7 +198,7 @@ td, th {
 				success:function(data){
 					//스프링에서 {"photoname":"파일명"}으로 return 할것.
 					//프로필 사진 변경 (db변경 후 업로드된 사진파일명을 반환받아서 변경)
-					$("#photo").attr("src","../save/"+data.photo);
+					$("#photo").attr("src",stpath+"/"+data.photo);
 				}
 			});
 		});

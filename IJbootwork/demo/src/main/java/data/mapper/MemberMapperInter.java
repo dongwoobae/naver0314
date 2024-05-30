@@ -18,5 +18,6 @@ public interface MemberMapperInter {
 	public  void  updateMember(MemberDto memberDto);
 	public int isLoginCheck(Map<String,String> map);
 	public void insertMember(MemberDto memberDto);
+	public int getIdCheck(String searchid);
 }
 

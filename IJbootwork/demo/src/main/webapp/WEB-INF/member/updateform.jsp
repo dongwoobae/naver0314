@@ -38,6 +38,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 }
 </style>
 </head>
+<c:set var="stPath" value="https://kr.object.ncloudstorage.com/bitcamp-bucket-56/photocommon"/>
 <body>
 	<form action="./update" method="post">
 		<table class="table table-bordered" style="width: 500px;">
@@ -49,7 +50,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 				</tr>
 			</thead>
 			<tr>
-				<td rowspan="6"><img src="../save/${dto.photo}" width="200"
+				<td rowspan="6"><img src="${stPath}/${dto.photo}" width="200"
 					id="photo"></td>
 			</tr>
 			<tr>
@@ -82,7 +83,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 				<td colspan="3" align="center">
 					<button type="submit" class="btn btn-primary">수정</button>
 					<button type="button" class="btn btn-secondary"
-						onclick="location.href='./detail?myid=${dto.myid}'">취소</button>
+						onclick="location.href='./detail?num=${dto.num}'">취소</button>
 				</td>
 			</tr>
 		</table>

@@ -24,16 +24,30 @@
         body * {
             font-family: 'Pretendard';
         }
+
+        pre.adata {
+            margin-left: 50px;
+            color: gray;
+        }
+        span.aday {
+            font-size: 12px;
+            color: gray;
+            margin-left: 100px;
+        }
     </style>
 </head>
+<c:set var="stPath" value="https://kr.object.ncloudstorage.com/bitcamp-bucket-56/photocommon"/>
 <body>
 <table width="600">
     <tr>
         <th><h2>${dto.subject}</h2></th>
+        <td align="right" style="white-space: nowrap;"><img src="${stPath}/${profile_photo}" width="40" class="rounded">
+            ${dto.writer}</td>
     </tr>
     <tr>
         <td><fmt:formatDate value="${dto.writeday}" pattern="yyyy-MM-dd HH:mm"/></td>
-        <td style="text-align: right;vertical-align: middle"><i class="bi bi-chat-dots"></i>댓글 조회수 ${dto.readcount}</td>
+        <td style="text-align: right;white-space: nowrap;"><i class="bi bi-chat-dots"></i>댓글 <span
+                class="answerCount"></span> 조회수 ${dto.readcount}</td>
     </tr>
     <tr>
         <td colspan="2">
@@ -43,7 +57,7 @@
     <tr>
         <td colspan="2" style="display: block; min-height: 250px;">
             <c:if test="${dto.uploadphoto!='no'}">
-                <img src="../save/${dto.uploadphoto}" width="200px;">
+                <img src="${stPath}/${dto.uploadphoto}" width="200px;" onerror="this.src='../save/noimage1.jpg'">
             </c:if><br>
             ${dto.content}
         </td>
@@ -51,6 +65,28 @@
     <tr>
         <td colspan="2">
             <hr>
+        </td>
+    </tr>
+    <tr>
+        <td><h5>댓글</h5>
+        </td>
+    </tr>
+    <c:if test="${sessionScope.loginok=='yes'}">
+        <tr>
+            <td colspan="2" align="right">
+                <span>${sessionScope.loginid}</span>
+                <input type="number" name="num" value="${dto.num}" hidden="hidden">
+                <span id="answerNumber" style="color: gray">0/1000</span>
+                <textarea name="content" cols="100%" class="form-control" id="answerText"
+                          placeholder="댓글을 남겨보세요"></textarea>
+                <button type="button" class="btn btn-outline" id="btnAnswerAdd">등록</button>
+                <br>
+            </td>
+        </tr>
+    </c:if>
+    <tr>
+        <td>
+            <div class="answerlist"></div>
         </td>
     </tr>
     <tr>
@@ -85,6 +121,96 @@
             location.href = "./delete?num=${dto.num}&currentPage=${currentPage}";
         }
     });
+    $("#answerText").on("input", function () {
+        let len = $(this).val().length;
+        $("#answerNumber").text(len + "/1000");
+    });
+    $("#btnAnswerAdd").click(function () {
+        let num = ${dto.num};
+        let content = $("#answerText").val();
+        if (content === '') {
+            alert("댓글을 등록해주세요");
+            return;
+        }
+        $.ajax({
+            type: "post",
+            dataType: "text",
+            url: "/board/ansInsert",
+            data: {"num": num, "content": content},
+            success: function () {
+                answer_list();
+                //초기화
+                $("#answerText").val("");
+            }
+
+        });
+    });
+    $(document).on("click", ".adel", function () {
+        let aidx = $(this).attr("aidx");
+        let a = confirm("해당 댓글을 삭제할까요?");
+        if (a) {
+            $.ajax({
+                type: "get",
+                dataType: "json",
+                data: {"aidx": aidx},
+                url: "./adelete",
+                success: function () {
+                    //댓글 삭제 후 목록 다시 출력
+                    answer_list();
+                }
+            });
+        }
+    });
+
+    function answer_list() {
+        let num =${dto.num};
+        let length =${list.size()};
+
+        $.ajax({
+            type: "get",
+            dataType: "json",
+            data: {"num": num},
+            url: "./alist",
+            success: function (data) {
+                //댓글 개수 출력
+                $("span.answerCount").text(data.list.length);
+                //목록 출력
+                let s = "";
+                let loginok = "${sessionScope.loginok}";
+                let loginid = "${sessionScope.loginid}";
+                let stpath="${stPath}";
+
+
+                for (let ele of data.list) {
+                    for (let eleP of data.photolist) {
+                        if (ele.myid === eleP.myid) {
+                            s += `
+                        <img src="\${stpath}/\${eleP.photo}" style="width: 40px; border-radius: 50%;" onerror="this.src='../save/noimage1.png'">
+                        `;
+                            break;
+                        }
+                    }
+                    s += `
+                \${ele.writer}(\${ele.myid})
+                `;
+                    if (loginok === 'yes' && loginid === ele.myid) {
+                        s += `
+                        <i class="bi bi-trash adel" aidx="\${ele.aidx}"></i>
+                         `;
+                    }
+                    s += `<pre class="adata">\${ele.content}
+                                <span class="aday">\${ele.writeday}</span></pre>
+
+                <hr>
+                `;
+                }
+                $(".answerlist").html(s);
+            }
+        })
+    }
+    $(function () {
+        answer_list();
+    })
 </script>
 </body>
 </html>

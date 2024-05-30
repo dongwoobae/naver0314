@@ -1,5 +1,6 @@
 package data.service;
 
+import data.dto.AnsPhotoDto;
 import data.dto.BoardAnswerDto;
 import data.mapper.BoardAnswerMapperinter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import java.util.List;
 public class BoardAnswerService {
     @Autowired
     private BoardAnswerMapperinter anInter;
+
     public void insertAnswer(BoardAnswerDto dto){
         anInter.insertAnswer(dto);
     }
@@ -19,5 +21,8 @@ public class BoardAnswerService {
     }
     public void deleteAnswer(int aidx){
         anInter.deleteAnswer(aidx);
+    }
+    public List<AnsPhotoDto> selectAnswer(int num){
+        return anInter.selectAnswer(num);
     }
 }
