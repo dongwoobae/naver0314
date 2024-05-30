@@ -10,4 +10,14 @@
     <insert id="insertGuestPhoto" parameterType="GuestPhotoDto">
         insert into guestphoto (guestidx,photoname) values (#{guestidx},#{photoname})
     </insert>
+    <select id="selectAllGuest" resultType="GuestDto">
+        SELECT
+            d.*,
+            (SELECT GROUP_CONCAT(p.photoname SEPARATOR ',')
+             FROM guestphoto p
+             WHERE d.guestidx = p.guestidx) AS photos
+        FROM
+            guestdb d
+        ORDER BY
+            guestidx DESC</select>
 </mapper>

@@ -34,7 +34,8 @@ public class GuestAjaxController {
     @PostMapping("/addGuest")
     public void guestInsert(
             @RequestParam("gcontent") String gcontent,
-            @RequestParam("upload") List<MultipartFile> upload,
+            //required=false 를 안주면 null 값 들어오면 400번 오류남
+            @RequestParam(value = "upload",required = false) List<MultipartFile> upload,
             HttpSession session
             ){
         //세션에서 로그인 되있는 아이디 얻기
@@ -56,18 +57,24 @@ public class GuestAjaxController {
 //        }
         //지금은 등록버튼 누를때 파일이 전달되는 방식
         //파일을 아예 안눌렀으면 null이 됨
-        if(upload==null){
+        if(upload==null || upload.isEmpty()){
             return;
         }
-        for(MultipartFile mfile : upload){
+        for(MultipartFile mfile : upload) {
             //스토리지에 저장후 파일명 얻기
-            String photoname=storageService.uploadFile(bucketName, folderName, mfile);
+            String photoname = storageService.uploadFile(bucketName, folderName, mfile);
             //db에 인서트
             GuestPhotoDto dto1 = new GuestPhotoDto();
             dto1.setGuestidx(guestidx);
             dto1.setPhotoname(photoname);
 
             guestService.insertGuestPhoto(dto1);
+
         }
+    }
+    @PostMapping("/datas")
+    public List<GuestDto> guestlist(){
+        List<GuestDto> list = guestService.selectAllGuest();
+        return list;
     }
 }
