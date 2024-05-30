@@ -22,6 +22,16 @@
 body * {
 	font-family: 'Pretendard';
 }
+span.boardListCommentCount{
+	color: red;
+	font-weight: bold;
+}
+td.ifOverFlowCut{
+	width: 200px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 </style>
 </head>
 <body>
@@ -31,14 +41,14 @@ body * {
 			style="width: 100px;" onclick="location.href='./writeform'"><i class="bi bi-pencil"></i>글쓰기</button>
 	</c:if>
 	<h5>총 ${totalCount}개의 글이 있습니다</h5>
-	<table class="table table-striped" style="width: 600px;">
+	<table class="table table-striped" style="width: 700px;">
 		<thead class="table-danger" style="text-align: center;">
 			<tr>
 				<th width="50">번호</th>
-				<th width="270">제목</th>
-				<th width="100">작성자</th>
-				<th width="120">작성일</th>
-				<th>조회수</th>
+				<th width="200">제목</th>
+				<th width="200">작성자</th>
+				<th>작성일</th>
+				<th width="100">조회수</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -53,17 +63,18 @@ body * {
 				<tr>
 					<td align="center">${no}<c:set var="no" value="${no-1}"></c:set>
 					</td>
-					<td>
+					<td class="ifOverFlowCut">
 						<!-- 제목 --> <a href="./detail?num=${dto.num}&currentPage=${currentPage}"> <!-- relevel한개당 두칸 띄우기 -->
 							<c:forEach begin="1" end="${dto.relevel}">
 							&nbsp;&nbsp;
 						</c:forEach> <!-- 답글일 경우 답글 이미지 --> <c:if test="${dto.restep>0}">
 								<img src="../image/re.png">
 							</c:if> ${dto.subject}&nbsp;<c:if test="${dto.uploadphoto!='no'}"><i class="bi bi-image-fill"
-						style="color: gray"></i></c:if>
+																								 style="color: gray"></i></c:if>
+						<c:if test="${dto.commentCount!=0}"><span class="boardListCommentCount">[${dto.commentCount}]</span></c:if>
 					</a>
 					</td>
-					<td align="center">${dto.writer}</td>
+					<td align="center" class="ifOverFlowCut">${dto.writer}</td>
 					<td align="center"><fmt:formatDate value="${dto.writeday}"
 							pattern="yyyy.MM.dd" /></td>
 					<td align="center">${dto.readcount}</td>

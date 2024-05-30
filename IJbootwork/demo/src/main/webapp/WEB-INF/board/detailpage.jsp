@@ -41,7 +41,7 @@
 <table width="600">
     <tr>
         <th><h2>${dto.subject}</h2></th>
-        <td align="right" style="white-space: nowrap;"><img src="${stPath}/${profile_photo}" width="40" class="rounded">
+        <td align="right" style="white-space: nowrap;"><img src="${stPath}/${profile_photo}" style="width: 40px;border-radius: 50%;">
             ${dto.writer}</td>
     </tr>
     <tr>
@@ -59,7 +59,7 @@
             <c:if test="${dto.uploadphoto!='no'}">
                 <img src="${stPath}/${dto.uploadphoto}" width="200px;" onerror="this.src='../save/noimage1.jpg'">
             </c:if><br>
-            ${dto.content}
+            <pre>${dto.content}</pre>
         </td>
     </tr>
     <tr>

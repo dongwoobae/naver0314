@@ -2,6 +2,7 @@ package controller.board;
 
 import java.util.List;
 
+import data.service.BoardAnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,8 @@ import data.service.ReBoardService;
 public class BoardListController {
 	@Autowired
 	private ReBoardService boardService;
+	@Autowired
+	private BoardAnswerService answerService;
 
 	@GetMapping("/board/list")
 	public String list(
@@ -25,7 +28,7 @@ public class BoardListController {
 		//총 글의 개수
 		int totalCount = boardService.getTotalCount();
 		//페이징에 필요한 변수들
-		int perPage=5;//한페이지 당 보여질 글의 개수 (바뀔 수 있어서 변수로 지정)
+		int perPage=10;//한페이지 당 보여질 글의 개수 (바뀔 수 있어서 변수로 지정)
 		int perBlock=5;//현재 블럭에 보여질 페이지의 개수
 		int start;//db 에서 가져올 시작번호
 		int startPage;//각 블럭에 보여질 시작페이지
@@ -51,6 +54,7 @@ public class BoardListController {
 		
 		//목록 가져오기
 		List<ReBoardDto> list = boardService.getPagingList(perPage, start);
+
 		//model에 필요한 data 저장
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("list", list);

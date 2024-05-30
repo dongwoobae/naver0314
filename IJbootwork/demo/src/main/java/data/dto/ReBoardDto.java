@@ -25,5 +25,6 @@ public class ReBoardDto {
 	private int regroup;
 	private int restep;
 	private int relevel;
+	private int commentCount;
 	private Timestamp writeday;
 }

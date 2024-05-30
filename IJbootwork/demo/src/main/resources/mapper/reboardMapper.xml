@@ -21,7 +21,7 @@
 		select count(*) from reboard 
 	</select>
 	<select id="getPagingList" resultType="ReBoardDto" parameterType="Map">
-		select * from reboard order by regroup desc, restep asc limit #{start},#{perPage}
+		select b.*,(select count(*) from boardanswer a where a.num = b.num) as commentCount from reboard b order by regroup desc, restep asc limit #{start},#{perPage}
 	</select>
 	<update id="updateReadcount" parameterType="int">
 		update reboard set readcount=readcount+1 where num=#{num}
