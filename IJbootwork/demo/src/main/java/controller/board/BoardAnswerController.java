@@ -36,6 +36,7 @@ public class BoardAnswerController {
                 num(num).build();
         //db insert
         answerService.insertAnswer(dto);
+
     }
 
 
