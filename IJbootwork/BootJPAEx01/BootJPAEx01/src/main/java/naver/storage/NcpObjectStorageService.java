@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 @Service
@@ -32,13 +34,14 @@ public class NcpObjectStorageService implements ObjectStorageService {
     @Override
     public String uploadFile(String bucketName, String directoryPath, MultipartFile file) {
         System.out.println("uploadFile="+file.getOriginalFilename());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
         if (file.isEmpty()) {
             return null;
         }
 
         try (InputStream fileIn = file.getInputStream()) {
-            String filename = UUID.randomUUID().toString();
+            String filename = sdf.format(new Date())+"_"+ UUID.randomUUID().toString();
 
             ObjectMetadata objectMetadata = new ObjectMetadata();
             objectMetadata.setContentType(file.getContentType());
