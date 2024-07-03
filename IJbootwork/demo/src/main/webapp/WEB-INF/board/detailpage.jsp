@@ -34,10 +34,29 @@
             color: gray;
             margin-left: 100px;
         }
+        div.trans{
+            position: relative;
+            margin-left: 20px;
+            width: 500px;
+        }
     </style>
 </head>
 <c:set var="stPath" value="https://kr.object.ncloudstorage.com/bitcamp-bucket-56/photocommon"/>
 <body>
+<div class="trans">
+    <div class="input-group">
+        <b>번역할 언어 선택</b>
+        <select id="seltrans" style="width: 130px; margin-left: 10px">
+            <option value="en">영어</option>
+            <option value="zh-CN">중국어</option>
+            <option value="ja">일본어</option>
+            <option value="fr">프랑스어</option>
+        </select>
+        <button type="button" id="audioTranslate">듣기</button>
+    </div>
+    <pre id="trans_lang" style="margin-top:10px;font-size: 25px;white-space: pre-wrap;word-wrap: break-word;"></pre>
+</div>
+
 <table width="600">
     <tr>
         <th><h2>${dto.subject}</h2></th>
@@ -210,7 +229,68 @@
     }
     $(function () {
         answer_list();
+        //처음 시작시 content 번역
+        trans_text();
+        $("#seltrans").change(function (){
+            trans_text();
+        });
+
     })
+    //번역해서 가져오는 함수
+    function trans_text(){
+        //번역할 문장
+        let text=`${dto.content}`;
+        //번역할 언어
+        let translang=$("#seltrans").val();
+
+        console.log(text);
+        console.log(translang);
+        $.ajax({
+            type:"post",
+            dataType:"text",
+            url:"./trans",
+            data:{"text":text,"translang":translang},
+            success:function (data){
+                // console.log(data);//json 형식의 문자열
+                // console.log(typeof (data));
+                let m=JSON.parse(data);
+                //번역된 텍스트만 추출
+                let s = m.message.result.translatedText;
+                console.log(s);
+                $("#trans_lang").html(s);
+
+
+            }
+        })
+    }
+    $("#audioTranslate").click(function (){
+        let text=$("#trans_lang").text();
+        let translang=$("#seltrans").val();
+        let speaker;
+        if(translang==="en"){
+            speaker="clara";
+        }else if(translang==="ja"){
+            speaker="dmio";
+        }else if(translang==="zh-CN"){
+            speaker="meimei";
+        }else{
+            speaker="";
+        }
+        $.ajax({
+            type: "POST",
+            url: "./transVoice",
+            data: {
+                "text": text,
+                "speaker": speaker
+            },
+            dataType: "text",
+            success: function (data) {
+                var audio = new Audio(data);
+                audio.play();
+            }
+        });
+
+    });
 </script>
 </body>
 </html>
