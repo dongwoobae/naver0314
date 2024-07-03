@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>mycarlist</title>
@@ -11,9 +10,35 @@
         body * {
             font-family: 'Prentendard';
         }
+        th{
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
+<h1 class="alert alert-info input-group" style="display: flex; justify-content: space-between">
+    총 [[${count}]] 개의 자동차 목록이 있습니다
+    <a th:href="@{/mycar/mycarform}" class="btn btn-danger" style="vertical-align: center;height: fit-content">
+        자동차 등록
+    </a>
+</h1>
+<table class="table table-bordered" style="width: 700px">
+<tr>
+    <th width="50">번호</th>
+    <th width="250">자동차명</th>
+    <th width="150">가격</th>
+    <th width="100">색상</th>
+    <th>구입일</th>
+</tr>
+    <tr th:each="item, iter : ${list}" th:with="filepath='https://ql47trrg3710.edge.naverncp.com/UBBjOlMItt/MyCarPhotos/', changepath='?type=f&w=40&h=40&faceopt=true&ttype=jpg'">
+        <td th:text="${iter.count}"></td>
+        <td><img th:src="@{${filepath} + ${item.carphoto} + ${changepath}}" hspace="10" border="1">
+            <a th:href="@{/mycar/mycardetail(num=${item.num})}" th:text="${item.carname}" style="text-decoration:none; color: black"></a></td>
+        <td th:text="${#numbers.formatCurrency(item.getCarprice())}"></td>
+        <td th:style="'background-color:'+${item.carcolor}"></td>
+        <td th:text="${item.carguip}"></td>
+    </tr>
+</table>
 </body>
 </html>
