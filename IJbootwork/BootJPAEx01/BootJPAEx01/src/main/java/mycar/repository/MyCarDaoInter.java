@@ -12,8 +12,8 @@ public interface MyCarDaoInter extends JpaRepository<MyCarDto, Long> {
     //@Query: repository에 원하는 쿼리를 작성하게 해주는 어노테이션
     //naticeQuery: JPA에서 지정한 규칙을 모두 무시할 수 있는 속성
     @Query(value = """
-                    update mycar set carname:carname,carprice:carprice,
-                                     carcolor:carcolor where num=:num
+                    update mycar set carname= :carname,carprice= :carprice,
+                                     carcolor= :carcolor where num= :num
             """, nativeQuery = true)
     @Modifying//@Modifying은 insert,update,delete 뿐 아니라 DDL 구문을 사용할 때도 표기 필수
     @Transactional//update, delete를 할때 표기를 필수

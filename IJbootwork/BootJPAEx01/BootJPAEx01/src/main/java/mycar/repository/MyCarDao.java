@@ -34,9 +34,9 @@ public class MyCarDao{
 
     public void updateCar(MyCarDto dto){
         if(dto.getCarphoto().equals("no")){
-            //daoInter.updateMycarNoPhoto(dto.getNum(),dto.getCarname(),dto.getCarprice(),dto.getCarcolor());
+            daoInter.updateMycarNoPhoto(dto.getNum(),dto.getCarname(),dto.getCarprice(),dto.getCarcolor());
             //parameter들 따로따로 보낸거
-            daoInter.updateMycarNoPhoto(dto);//dto 통째로 보낸거
+//            daoInter.updateMycarNoPhoto(dto);//dto 통째로 보낸거
         }else{
             daoInter.save(dto);//num이 포함되어 있을 경우 모든 컬럼 수정
         }
