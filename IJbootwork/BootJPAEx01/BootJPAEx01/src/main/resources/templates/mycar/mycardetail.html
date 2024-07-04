@@ -11,26 +11,127 @@
         body * {
             font-family: 'Prentendard';
         }
+
+        .comment {
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid gray;
+            border-radius: 20px;
+            padding: 10px;
+            margin: 5px;
+        }
+        .comment_delete{
+            color: red;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 <h1>상세보기</h1>
-<button type="button" class="btn btn-outline-secondary btn-sm"
-onclick="location.href='./mycarlist'">목록</button>
-<button type="button" class="btn btn-outline-secondary btn-sm"
-        onclick="location.href='./mycarform'">자동차 추가</button>
-<button type="button" class="btn btn-outline-secondary btn-sm"
-        th:onclick="|location.href='@{./delete(num=${dto.num}'|">상품 삭제</button>
-<button type="button" class="btn btn-outline-secondary btn-sm"
-        th:onclick="|location.href='@{./carupdate(num=${dto.num})}'|">상품 수정</button>
+<button class="btn btn-outline-secondary btn-sm" onclick="location.href='./mycarlist'"
+        type="button">목록
+</button>
+<button class="btn btn-outline-secondary btn-sm" onclick="location.href='./mycarform'"
+        type="button">자동차 추가
+</button>
+<button class="btn btn-outline-secondary btn-sm" th:onclick="|location.href='@{./delete(num=${dto.num})}'|"
+        type="button">상품 삭제
+</button>
+<button class="btn btn-outline-secondary btn-sm" th:onclick="|location.href='@{./carupdate(num=${dto.num})}'|"
+        type="button">상품 수정
+</button>
 <div th:object="${dto}">
     <h3>자동차명 : <span th:text="*{carname}"></span></h3>
-    <img th:src="@{'https://kr.object.ncloudstorage.com/mycar/MyCarPhotos/'+ *{carphoto}}" style="max-width: 500px; border: 5px groove black">
-<br><br>
+    <img style="max-width: 500px; border: 5px groove black"
+         th:src="@{'https://kr.object.ncloudstorage.com/mycar/MyCarPhotos/'+ *{carphoto}}">
+    <br><br>
     <h4>가격: <span th:text="${#numbers.formatCurrency(dto.carprice)}"></span></h4>
     <h4>색상 : <span th:style="'background-color : '+ *{carcolor}" th:text="*{carcolor}"></span></h4>
     <h4>구입일: <span th:text="*{carguip}"><</span></h4>
     <h4>등록 날짜: <span th:text="${#dates.format(dto.writeday,'yyyy-MM-dd')}"></span></h4>
 </div>
+<div style="margin-left: 10px; border: 3px inset gray; border-radius: 20px;width: fit-content;padding: 10px">
+    <span style="color: blue">코멘트 목록</span><span id="totalNum"></span>
+</div>
+<br>
+<div class="input-group" style="width: 400px">
+    <h5>댓글</h5>
+    <input class="form-control" id="comment" style="margin-left: 10px; border: 1px solid black"
+           type="text">
+    <button class="btn btn-sm btn-success" id="btncomment" type="button">저장</button>
+</div>
+<div class="comment_list" style="width: 500px"></div>
+<script>
+    function list() {
+        let num = [[${dto.num}]];
+        $(".comment_list").empty();
+        $.ajax({
+            type: "get",
+            dataType: "json",
+            data: {"num": num},
+            url: "./commentlist",
+            success: function (data) {
+                let s = "";
+                $("#totalNum").html(`&emsp;&emsp;${data.length}개의 댓글이 있습니다`)
+                data.forEach(function (comment) {
+                    s += `
+                    <div class="comment" id="comment_${comment.idx}">
+                   <p>${comment.comment}</p><p>${comment.writeDay}&emsp;<span class="comment_delete" onclick="commentdelete(${comment.idx})">삭제</span></p>
+                   </div>
+                    `;
+                })
+
+                $(".comment_list").append(s);
+            }
+        })
+    }
+
+    //enter 쳐도 되게
+    $("#comment").keypress(function (event) {
+        if (event.key == 'Enter') {
+            $("#btncomment").trigger("click");
+        }
+    });
+
+    //댓글 추가 이벤트
+    $("#btncomment").click(function () {
+        let num = [[${dto.num}]];
+        let comment = $("#comment").val();
+        if (comment === "") {
+            return;
+        }
+
+        $.ajax({
+            type: "get",
+            dataType: "text",
+            url: "./addcomment",
+            data: {
+                "num": num,
+                "comment": comment
+            },
+            success: function () {
+                list();
+                $("#comment").val("");
+            }
+        })
+    });
+
+    //댓글 삭제 이벤트
+    function commentdelete(idx)
+    {
+            $.ajax({
+                type: "get",
+                dataType: "text",
+                data: {"idx": idx},
+                url: "./commentdelete",
+                success: function () {
+                    $("#comment_"+idx).remove();
+                }
+            })
+    }
+    $(function () {
+        list();
+    })
+</script>
 </body>
 </html>
