@@ -33,8 +33,11 @@
 </tr>
     <tr th:each="item, iter : ${list}" th:with="filepath='https://ql47trrg3710.edge.naverncp.com/UBBjOlMItt/MyCarPhotos/', changepath='?type=f&w=40&h=40&faceopt=true&ttype=jpg'">
         <td th:text="${iter.count}"></td>
-        <td><img th:src="@{${filepath} + ${item.carphoto} + ${changepath}}" hspace="10" border="1">
-            <a th:href="@{/mycar/mycardetail(num=${item.num})}" th:text="${item.carname}" style="text-decoration:none; color: black"></a></td>
+        <td>
+            <a th:href="@{/mycar/mycardetail(num=${item.num})}" style="text-decoration:none; color: black">
+                <img th:src="@{${filepath} + ${item.carphoto} + ${changepath}}" hspace="10" border="1">
+                [[${item.carname}]]
+            </a></td>
         <td th:text="${#numbers.formatCurrency(item.getCarprice())}"></td>
         <td th:style="'background-color:'+${item.carcolor}"></td>
         <td th:text="${item.carguip}"></td>

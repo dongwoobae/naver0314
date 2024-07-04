@@ -51,7 +51,7 @@ public class MyCarController {
         return "redirect:./mycarlist";
     }
     @GetMapping("/mycar/mycardetail")
-    public String mycarDetail(@RequestParam long num,
+    public String mycarDetail(@RequestParam("num") Long num,
             Model model) {
         MyCarDto dto=dao.getCarById(num);
         model.addAttribute("dto",dto);
