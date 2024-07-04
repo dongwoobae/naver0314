@@ -20,6 +20,7 @@ import java.util.List;
 public class MyCarController {
     private final MyCarDao dao;
     private final NcpObjectStorageService storageService;
+    private final MyCarDao myCarDao;
     String BucketName="mycar";
     String FolderName="MyCarPhotos";
 
@@ -57,5 +58,31 @@ public class MyCarController {
         model.addAttribute("dto",dto);
 
         return "mycar/mycardetail";
+    }
+
+    @GetMapping("/mycar/carupdate")
+    public String mycarUpdate(@RequestParam("num") Long num,
+                              Model model){
+        MyCarDto dto=dao.getCarById(num);
+        model.addAttribute("dto",dto);
+
+        return "mycar/mycarupdateform";
+    }
+    @PostMapping("/mycar/mycarupdate")
+    public String mycarUpdateSuccess(@ModelAttribute MyCarDto dto,
+                                     @RequestParam("carupload") MultipartFile carupload){
+        if(carupload.isEmpty()){
+            dto.setCarphoto("no");
+        } else {
+            //사진 수정을 하기 전 storage의 기존 사진을 지우자
+            String oldPhotoname=dao.getCarById(dto.getNum()).getCarphoto();
+            storageService.deleteFile(BucketName,FolderName,oldPhotoname);
+
+            String photo=storageService.uploadFile(BucketName,FolderName,carupload);
+            dto.setCarphoto(photo);
+        }
+        //수정 메소드 호출
+        dao.updateCar(dto);
+        return "redirect:/mycar/mycardetail?num="+dto.getNum();
     }
 }

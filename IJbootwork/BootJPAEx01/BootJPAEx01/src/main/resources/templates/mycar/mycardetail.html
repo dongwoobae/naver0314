@@ -22,7 +22,7 @@ onclick="location.href='./mycarlist'">목록</button>
 <button type="button" class="btn btn-outline-secondary btn-sm"
         th:onclick="|location.href='@{./delete(num=${dto.num}'|">상품 삭제</button>
 <button type="button" class="btn btn-outline-secondary btn-sm"
-        th:onclick="|location.href='./carupdate(num=${dto.num})'|">상품 수정</button>
+        th:onclick="|location.href='@{./carupdate(num=${dto.num})}'|">상품 수정</button>
 <div th:object="${dto}">
     <h3>자동차명 : <span th:text="*{carname}"></span></h3>
     <img th:src="@{'https://kr.object.ncloudstorage.com/mycar/MyCarPhotos/'+ *{carphoto}}" style="max-width: 500px; border: 5px groove black">
