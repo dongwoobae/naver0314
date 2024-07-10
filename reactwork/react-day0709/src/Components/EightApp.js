@@ -13,10 +13,10 @@ const EightApp = () => {
     return (
         <div>
             <Alert>EightApp-table을 이용해서 출력</Alert>
-            <div style={{display:"flex"}}>
+            <div style={{display: 'flex', flexWrap: 'wrap'}}>
             {
                 personArray.map((item, idx) => {
-                    return <div style={{marginLeft:'30px',border:'2px solid gray',borderRadius:'20px',padding:'20px'}}>
+                    return <div style={{width:'fit-content',margin:'10px',border:'2px solid gray',borderRadius:'20px',padding:'20px'}}>
                         <h5>{idx + 1}번</h5>
                         <img src={require(`../image/${item.photo}`)} alt={'연예인 사진'} className={'photo'}/>
                         <h5>이름: {item.pname}</h5>
