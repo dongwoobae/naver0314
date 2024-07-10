@@ -1,0 +1,45 @@
+.box1{
+    min-width: 300px;
+    max-width: fit-content;
+    min-height: 100px;
+    max-height: fit-content;
+    line-height: 100px;
+    font-size: 20px;
+    border: 5px groove mediumorchid;
+    margin-bottom: 10px;
+    text-align: center;
+    overflow: hidden;
+}
+.small{
+    width: 60px;
+    height: 60px;
+    border-radius: 100px;
+    margin-right: 20px;
+}
+.small2{
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+}
+.box2{
+    width: 200px;
+    height: 250px;
+    border: 2px solid gray;
+    padding: 20px;
+    font-size: 15px;
+    text-align: center;
+    margin-right: 10px;
+    border-radius: 30px;
+}
+.tbstyle{
+    border: 3px solid gray;
+    width: 400px;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.tbstyle tr,.tbstyle th,.tbstyle td{
+    border: 1px solid gray;
+    font-size: 15px;
+    text-align: center;
+}

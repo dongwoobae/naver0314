@@ -9,7 +9,7 @@ import {FormControlLabel, Radio, RadioGroup} from "@mui/material";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MainApp = () => {
-    const [idx, setIdx] = React.useState(1);
+    const [idx, setIdx] = React.useState(6);
     const changeApp=(e)=>{
         setIdx(Number(e.target.value));
     }
@@ -32,25 +32,25 @@ const MainApp = () => {
                     <FormControlLabel
                         value="3"
                         control={<Radio />}
-                        label="ThreeApp"
+                        label="ThreeApp - useRef 공부하기"
                         onChange={changeApp}
                     />
                     <FormControlLabel
                         value="4"
                         control={<Radio />}
-                        label="FourApp"
+                        label="FourApp useRef 응용 예제"
                         onChange={changeApp}
                     />
                     <FormControlLabel
                         value="5"
                         control={<Radio />}
-                        label="FiveApp"
+                        label="FiveApp - 부모 자식간 통신 #1"
                         onChange={changeApp}
                     />
                     <FormControlLabel
                         value="6"
                         control={<Radio />}
-                        label="SixApp"
+                        label="SixApp - 부모 자식간 통신 #2"
                         onChange={changeApp}
                     />
 
