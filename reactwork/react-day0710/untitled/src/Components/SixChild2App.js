@@ -3,7 +3,6 @@ import {Button} from "@mui/material";
 import {DeleteForeverOutlined} from "@mui/icons-material";
 
 const SixChild2App = ({row,onDelete}) => {
-
     return (
         <tr>
             <td>{row.cname}</td>
