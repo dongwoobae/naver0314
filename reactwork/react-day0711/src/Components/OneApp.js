@@ -36,6 +36,13 @@ const OneApp = () => {
             scolor:'#ffccff'
         });
     }
+    //삭제 이벤트
+    const deleteData=(idx)=>{
+        let a = window.confirm("삭제?");
+        if(a) {
+            setInputArray(inputArray.filter((item, i) => i !== idx))
+        }
+    }
     return (
         <div>
             <Alert>OneApp - 모든 입력값 하나의 변수에 넣기</Alert>
@@ -99,8 +106,9 @@ const OneApp = () => {
             <table className={'table table-bordered'} style={{width:400}}>
                 <tbody>
                 {
+                    inputArray &&
                     inputArray.map((item,idx) => (
-                        <OneSubApp key={idx} idx={idx} item={item}/>
+                        <OneSubApp key={idx} idx={idx} item={item} onDelete={deleteData}/>
                     ))
                 }
                 </tbody>
