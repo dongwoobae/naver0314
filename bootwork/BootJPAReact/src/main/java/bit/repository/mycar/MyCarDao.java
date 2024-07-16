@@ -1,11 +1,11 @@
-package bit.mycar.repository;
+package bit.repository.mycar;
 
 import java.util.List;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import bit.mycar.data.MycarDto;
+import bit.data.mycar.MycarDto;
 import lombok.AllArgsConstructor;
 
 @Repository

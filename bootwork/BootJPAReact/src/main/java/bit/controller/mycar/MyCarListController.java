@@ -1,4 +1,4 @@
-package bit.mycar.controller;
+package bit.controller.mycar;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.Map;
 
 import org.springframework.web.bind.annotation.*;
 
-import bit.mycar.data.MycarDto;
-import bit.mycar.service.MyCarService;
+import bit.data.mycar.MycarDto;
+import bit.service.mycar.MyCarService;
 import lombok.RequiredArgsConstructor;
 import naver.storage.NcpObjectStorageService;
 import org.springframework.web.multipart.MultipartFile;

@@ -1,4 +1,4 @@
-package bit.mycar.data;
+package bit.data.mycar;
 
 import java.sql.Timestamp;
 

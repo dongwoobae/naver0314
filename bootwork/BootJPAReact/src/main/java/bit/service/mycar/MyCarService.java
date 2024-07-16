@@ -1,11 +1,11 @@
-package bit.mycar.service;
+package bit.service.mycar;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import bit.mycar.data.MycarDto;
-import bit.mycar.repository.MyCarDao;
+import bit.data.mycar.MycarDto;
+import bit.repository.mycar.MyCarDao;
 import lombok.AllArgsConstructor;
 
 @Service
