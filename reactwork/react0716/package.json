@@ -1,5 +1,5 @@
 {
-  "name": "react0715",
+  "name": "react0716",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,11 +15,10 @@
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.1",
     "react-scripts": "5.0.1",
     "styled-components": "^6.1.11",
-    "web-vitals": "^2.1.4",
-    "@react-buddy/ide-toolbox": "^2.4.0",
-    "@react-buddy/palette-mui": "^5.0.1"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

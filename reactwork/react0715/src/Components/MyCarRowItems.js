@@ -7,8 +7,6 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
-import axios from "axios";
-import myCarList from "./MyCarList";
 
 const directions = ['up', 'down', 'left', 'right'];
 
