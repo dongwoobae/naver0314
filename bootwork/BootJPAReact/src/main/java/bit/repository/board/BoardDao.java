@@ -16,12 +16,12 @@ public class BoardDao {
         boardDaoInter.save(dto);
     }
     public List<BoardDto> getAllDatas(){
-        return boardDaoInter.findAll(Sort.by(Sort.Direction.DESC,"board_num"));
+        return boardDaoInter.findAll(Sort.by(Sort.Direction.DESC,"boardNum"));
     }
     public BoardDto getData(Long boardNum){
         return boardDaoInter.getReferenceById(boardNum);
     }
-    public boolean isEqualPass(Long boardNum, int pass){
+    public boolean isEqualPass(Long boardNum, String pass){
         return boardDaoInter.isEqualPass(boardNum, pass) == 1;
     }
     public void deleteBoard(Long boardNum){
@@ -33,6 +33,9 @@ public class BoardDao {
         }else{
             boardDaoInter.save(dto);
         }
+    }
+    public void updateReadCount(Long boardNum){
+        boardDaoInter.updateReadCount(boardNum);
     }
 
 }

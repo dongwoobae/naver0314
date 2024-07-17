@@ -20,5 +20,5 @@ public interface BoardDaoInter extends JpaRepository<BoardDto,Long> {
     public void updateReadCount(@Param("boardNum") Long boardNum);
     @Query(value = "select count(*) from reactboard where board_num=:boardNum and pass=:pass",
     nativeQuery = true)
-    public int isEqualPass(@Param("boardNum") Long boardNum,@Param("pass") int pass);
+    public int isEqualPass(@Param("boardNum") Long boardNum,@Param("pass") String pass);
 }

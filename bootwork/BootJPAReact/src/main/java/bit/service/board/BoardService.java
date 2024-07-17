@@ -22,7 +22,7 @@ public class BoardService {
     public BoardDto getData(Long boardNum){
         return boardDao.getData(boardNum);
     }
-    public boolean isEqualPass(Long boardNum, int pass){
+    public boolean isEqualPass(Long boardNum, String pass){
         return boardDao.isEqualPass(boardNum,pass);
     }
     public void deleteBoard(Long boardNum){
@@ -30,5 +30,8 @@ public class BoardService {
     }
     public void updateBoard(BoardDto dto){
         boardDao.updateBoard(dto);
+    }
+    public void updateReadCount(Long boardNum){
+        boardDao.updateReadCount(boardNum);
     }
 }
