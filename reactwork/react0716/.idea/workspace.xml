@@ -5,49 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd1bb238-7c4e-4ee6-ac54-1f6e5cf0db75" name="Changes" comment="react 07 16 router">
-      <change afterPath="$PROJECT_DIR$/../../bootwork/BootJPAReact/src/main/java/bit/controller/board/BoardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/components/BoardDetail.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/components/BoardForm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/components/BoardList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/components/Home.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/components/Menu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/components/MyStyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-034.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-035.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-036.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-037.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-038.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-039.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-040.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-041.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-042.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-043.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-044.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-045.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-046.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-047.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-048.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-049.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-050.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-051.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-052.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-053.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-054.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-055.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-057.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/image/mainimage/K-060.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/router/Root.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../react-boardrouter/src/router/RouterMain.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../bootwork/BootJPAReact/src/main/java/bit/data/board/BoardDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../bootwork/BootJPAReact/src/main/java/bit/data/board/BoardDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../bootwork/BootJPAReact/src/main/java/bit/repository/board/BoardDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../bootwork/BootJPAReact/src/main/java/bit/repository/board/BoardDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../bootwork/BootJPAReact/src/main/java/bit/repository/board/BoardDaoInter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../bootwork/BootJPAReact/src/main/java/bit/repository/board/BoardDaoInter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../bootwork/BootJPAReact/src/main/java/bit/service/board/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../bootwork/BootJPAReact/src/main/java/bit/service/board/BoardService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../react-boardrouter/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../react-boardrouter/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../react-boardrouter/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../react-boardrouter/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../react-boardrouter/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react-boardrouter/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-boardrouter/src/components/BoardForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react-boardrouter/src/components/BoardForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-boardrouter/src/components/BoardList.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react-boardrouter/src/components/BoardList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react-boardrouter/src/components/MyStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/../react-boardrouter/src/components/MyStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,6 +106,7 @@
       <workItem from="1721116664102" duration="2542000" />
       <workItem from="1721176799407" duration="1599000" />
       <workItem from="1721185676362" duration="632000" />
+      <workItem from="1721196347343" duration="608000" />
     </task>
     <task id="LOCAL-00001" summary="react 07 16 router">
       <option name="closed" value="true" />

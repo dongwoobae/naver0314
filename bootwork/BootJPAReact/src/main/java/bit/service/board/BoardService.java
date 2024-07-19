@@ -3,7 +3,6 @@ package bit.service.board;
 import bit.data.board.BoardDto;
 import bit.repository.board.BoardDao;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

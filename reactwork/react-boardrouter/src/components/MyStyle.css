@@ -22,3 +22,16 @@ ul.mainMenu li:hover{
     font-size: 1.05em;
     color: darkviolet;
 }
+span.table_list_title{
+    cursor: pointer;
+}
+span.table_list_title:hover{
+    color:mediumorchid;
+    transition: 0.2s ease-in-out;
+}
+* th{
+    text-align: center;
+}
+pre img{
+    max-width: 500px;
+}

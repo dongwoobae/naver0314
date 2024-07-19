@@ -49,6 +49,11 @@ public class BoardController {
         return boardService.getData(boardNum);
     }
 
+    @GetMapping("/updateForm")
+    public BoardDto updateForm(@RequestParam("boardNum") Long boardNum){
+        return boardService.getData(boardNum);
+    }
+
     @GetMapping("/updatecheckpass")
     public Map<String,Object> checkPass(@RequestParam("boardNum") Long boardNum,
                                         @RequestParam("pass") String pass){
@@ -57,7 +62,6 @@ public class BoardController {
 
         if(flag){
             BoardDto boardDto=boardService.getData(boardNum);
-            map.put("boardDto",boardDto);
             map.put("result","success");
         }else {
             map.put("result", "fail");
@@ -67,7 +71,7 @@ public class BoardController {
     }
 
     @PostMapping("/update")
-    public void update(@RequestBody BoardDto dto){
+    public void update(BoardDto dto){
         System.out.println("dto>>"+dto);
         boardService.updateBoard(dto);
     }
@@ -87,6 +91,4 @@ public class BoardController {
         }
         return map;
     }
-
-
 }

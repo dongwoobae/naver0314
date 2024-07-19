@@ -8,8 +8,12 @@ spring:
     url: jdbc:mysql://db-n9jg4-kr.vpc-pub-cdb.ntruss.com:3306/studydb?serverTimezone=Asia/Seoul
     username: study
     password: bitcamp!@#123
-    
-#jpa setting
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+
+  #jpa setting
 #ddl-auto: create(기존 테이블을 제거후 다시 생성:절대 주의해서 사용)  , update(변경된 부분만 반영)
   jpa:
     hibernate:
