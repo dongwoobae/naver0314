@@ -35,3 +35,32 @@ span.table_list_title:hover{
 pre img{
     max-width: 500px;
 }
+/* CommentList.css */
+
+.input-container {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.slide-enter {
+    max-width: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-width 300ms ease-out, opacity 300ms ease-out;
+}
+
+.slide-enter-active {
+    max-width: 200px; /* 적절한 너비로 설정 */
+    opacity: 1;
+}
+
+.slide-exit {
+    max-width: 200px; /* 동일한 너비로 설정 */
+    opacity: 1;
+    transition: max-width 300ms ease-in, opacity 300ms ease-in;
+}
+
+.slide-exit-active {
+    max-width: 0;
+    opacity: 0;
+}

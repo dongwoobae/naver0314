@@ -29,8 +29,10 @@ public class BoardCommentDto {
     private BoardDto boardDto;
     @Column(length = 50)
     private String nickname;
-    @Column(length = 40)
+    @Column(length = 40,updatable = false)
     private String cpass;
+    @Column(length = 40,updatable = false)
+    private String loginip;
     @Column(length = 500)
     private String comment;
     @Column(updatable = false)

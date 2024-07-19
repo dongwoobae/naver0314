@@ -19,6 +19,12 @@ const Menu = () => {
                 <li onClick={() => handleLiClick('/board/form')}>
                     WriteForm
                 </li>
+                <li onClick={()=>handleLiClick('/post')}>
+                    Post
+                </li>
+                <li onClick={()=>handleLiClick('/sweet')}>
+                    SweetAlert
+                </li>
             </ul>
         </div>
     );

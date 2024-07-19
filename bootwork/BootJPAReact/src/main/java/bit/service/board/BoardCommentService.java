@@ -25,4 +25,7 @@ public class BoardCommentService {
     public void updateBoardComment(@Param("idx") Long idx, @Param("comment") String comment){
         dao.updateBoardComment(idx,comment);
     }
+    public boolean pwCheck(@Param("idx") Long idx, @Param("cpass") String cpass){
+        return dao.pwCheck(idx,cpass);
+    }
 }

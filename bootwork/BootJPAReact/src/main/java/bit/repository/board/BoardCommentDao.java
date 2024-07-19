@@ -27,5 +27,9 @@ public class BoardCommentDao {
     public void updateBoardComment(@Param("idx") Long idx, @Param("comment") String comment){
         daoInter.updateComment(idx,comment);
     }
+    //비밀번호 체크
+    public boolean pwCheck(@Param("idx") Long idx, @Param("cpass") String cpass){
+        return daoInter.pwCheck(idx,cpass)==1;
+    }
 
 }

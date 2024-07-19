@@ -14,20 +14,30 @@ import axios from "axios";
 import { format } from "date-fns";
 import './MyStyle.css';
 import InputEmojiWithRef from "react-input-emoji";
+import {HighlightOffOutlined, Mode} from "@mui/icons-material";
 
 const BoardDetail = () => {
     const storage = process.env.REACT_APP_STORAGE;
     const { boardNum } = useParams();
     const [selectData, setSelectData] = useState(null);
     const [loading, setLoading] = useState(true);
-    const navi=useNavigate();
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
+    const [comment,setComment]=useState('');
+    const [updatedComment, setUpdatedComment] = useState('');
     const [commentList,setCommentList]=useState([]);
     const [error, setError] = useState('');
     const [pass,setPass]=useState('');
-    const [nickname,setNickname]=useState('');
+    const [nickname,setNickname]=useState('ㅇㅇ');
     const [cPass,setCPass]=useState('');
+    const [inputCpass,setInputCpass]=useState('');
+    const [visibility,setVisibility]=useState(false);
+    const [visibleInputIndex , setVisibleInputIndex ] = useState(null);
+    const [delVis, setDelVis] = useState(false);
+    const [upVis,setUpVis]=useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+
+    const navi=useNavigate();
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -54,6 +64,45 @@ const BoardDetail = () => {
     const handlePasswordChange = (event) => {
         setPass(event.target.value);
     };
+    const handleInputCpassDel=(idx)=>{
+        let url=`/boot/boardcomment/pwcheck?idx=${idx}&cpass=${inputCpass}`;
+        axios.get(url).then(res=>{
+            if(res.data.result==='confirm'){
+                axios.delete(`/boot/boardcomment/delete/${idx}`).then(res=>{
+                    getCommentData();
+                    setVisibleInputIndex('');
+                    setInputCpass('');
+                    setVisibility(false);
+                })
+            }else{
+                alert('비밀번호 틀림');
+                setInputCpass('');
+            }
+        })
+    }
+    const handleInputCpassUp=(idx)=>{
+        let url=`/boot/boardcomment/pwcheck?idx=${idx}&cpass=${inputCpass}`;
+        axios.get(url).then(res=>{
+            if (res.data.result==='confirm'){
+                const formData=new FormData();
+                formData.append('comment',updatedComment);
+                axios.put(`/boot/boardcomment/update/${idx}`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    }
+                }).then(res=>{
+                    getCommentData();
+                    setVisibleInputIndex('');
+                    setInputCpass('');
+                    setVisibility(false);
+                    setUpdatedComment('');
+                })
+            }else {
+                alert('비밀번호 틀림');
+                setInputCpass('');
+            }
+        })
+    }
 
     const getData = () => {
         let url = "/boot/board/detail?boardNum=" + boardNum;
@@ -72,7 +121,20 @@ const BoardDetail = () => {
         })
     }
     const insertComment=(e)=>{
-        let comment
+        const formData=new FormData();
+        formData.append('boardNum',boardNum);
+        formData.append('nickname',nickname);
+        formData.append('cpass',cPass);
+        formData.append('comment',comment);
+
+        let url='/boot/boardcomment/insert'
+
+        axios.post(url,formData).then(res=>{
+            getCommentData();
+            setNickname('');
+            setComment('');
+            setCPass('');
+        })
     }
 
     useEffect(() => {
@@ -128,15 +190,20 @@ const BoardDetail = () => {
                     <th>댓글</th>
                 </tr>
                 <tr>
-                    <td colSpan={2}>
+                    <td colSpan={2} style={{borderBottom:'1px solid black'}}>
                         작성자 : <input type={'text'} name={'nickname'} value={nickname} onChange={(e)=>{
                             setNickname(e.target.value);
                     }} style={{width:'100px'}}/>&emsp;비밀번호: <input type={'password'} value={cPass} onChange={(e)=>{
                         setCPass(e.target.value);
                     }} style={{width:'100px'}}/>
                         <InputEmojiWithRef
-                            placeholder={'댓글 입력'}
-                            onEnter={insertComment}></InputEmojiWithRef>
+                            value={comment}
+                            onChange={(text)=>{
+                                setComment(text);
+                            }}
+                            cleanOnEnter
+                            placeholder={'댓글 입력 후 Enter'}
+                            onEnter={insertComment}/>
                     </td>
                 </tr>
                 {
@@ -144,8 +211,82 @@ const BoardDetail = () => {
                     commentList.map((comment,idx)=>{
                         return(
                         <>
+                            <tr key={idx}>
+                                <td colSpan={2}>{comment.nickname}&nbsp;(<span
+                                    style={{fontSize: '11px', color: 'rgba(0,0,0,0.6)'}}>{comment.loginip}</span>)&emsp; <span
+                                    style={{color: 'gray', fontSize: '0.8em'}}>{comment.writeday}</span>&emsp;
+                                    <Mode style={{color:'gray',fontSize:'1em',cursor:'pointer'}}
+                                    onClick={()=>{
+                                        if(visibleInputIndex!==comment.idx) {
+                                            setVisibility(true);
+                                            setInputCpass('');
+                                            setDelVis(false);
+                                            setUpVis(true);
+                                            setIsEditing(!isEditing);
+                                            setUpdatedComment('');
+                                        }else {
+                                            if(delVis){
+                                                setVisibility(true);
+                                                }else {
+                                                setVisibility(!visibility);
+                                            }
+                                            setInputCpass('');
+                                            setDelVis(false);
+                                            setUpVis(true);
+                                            setIsEditing(!isEditing);
+                                        }
+                                        setVisibleInputIndex(comment.idx);
+                                    }}/>&nbsp;
+                                    <HighlightOffOutlined style={{fontSize: '1em',color:'gray',cursor:'pointer'}}
+                                    onClick={()=>{
+                                        if(visibleInputIndex!==comment.idx) {
+                                            setVisibility(true);
+                                        }else {
+                                            if(upVis) {
+                                                setVisibility(true)
+                                            }else {
+                                                setVisibility(!visibility);
+                                            }
+                                        }
+                                        setIsEditing(false);
+                                        setDelVis(true);
+                                        setUpVis(false);
+                                        setInputCpass('');
+                                        setVisibleInputIndex(comment.idx);
+                                    }}/>&emsp;
+                                    {
+                                        visibleInputIndex===comment.idx&&visibility&&(
+                                            <div style={{display:'inline-flex'}}>
+                                        <input type={'password'} style={{width:'150px',fontSize:'small'}} className={'form-control'} placeholder={'댓글 비밀번호'} name={'cpassInput'} value={inputCpass} onChange={(e)=>{
+                                        setInputCpass(e.target.value);
+                                    }}/>&nbsp;
+                                                {
+                                                    delVis&&!upVis&&
+                                                <button className={'btn btn-outline-info btn-sm'} onClick={()=>handleInputCpassDel(comment.idx)}>확인</button>
+                                                }
+                                                {
+                                                    !delVis&&upVis&&
+                                                    <button className={'btn btn-outline-success btn-sm'} onClick={()=>handleInputCpassUp(comment.idx)}>확인</button>
+                                                }
+                                            </div>
+                                )}
+                                </td>
+                            </tr>
                             <tr>
-                                <td>{comment.nickname} : {comment.comment}</td>
+                            <td colSpan={2} style={{borderBottom:'1px solid lightgray',fontSize:'14px'}}>
+                                {isEditing&&visibleInputIndex===comment.idx ? (
+                                    <input
+                                        type={'text'}
+                                        value={updatedComment}
+                                        className={'form-control'}
+                                        style={{height:'fit-content'}}
+                                        placeholder={'댓글 수정'}
+                                        onChange={(e) => setUpdatedComment(e.target.value)} // 상태 업데이트 필요
+                                    />
+                                ) : (
+                                    comment.comment
+                                )}
+                            </td>
                             </tr>
                         </>
                         )

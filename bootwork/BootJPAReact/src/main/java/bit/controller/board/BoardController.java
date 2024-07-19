@@ -1,6 +1,7 @@
 package bit.controller.board;
 
 import bit.data.board.BoardDto;
+import bit.service.board.BoardCommentService;
 import bit.service.board.BoardService;
 import lombok.RequiredArgsConstructor;
 import naver.storage.NcpObjectStorageService;
@@ -18,6 +19,7 @@ public class BoardController {
 
     private final BoardService boardService;
     private final NcpObjectStorageService storageService;
+    private final BoardCommentService commentService;
 
     String bucketName="mycar";
     String folderName="ReactBoard";
@@ -39,7 +41,13 @@ public class BoardController {
     @GetMapping("/list")
     public List<BoardDto> list(){
         System.out.println("list>>");
-        return boardService.getAllDatas();
+        List<BoardDto> list=boardService.getAllDatas();
+        for(BoardDto dto:list){
+            Long boardNum=dto.getBoardNum();
+            int acount=commentService.findByBoardId(boardNum).size();
+            dto.setAnswercount(acount);
+        }
+        return list;
     }
 
     @GetMapping("/detail")

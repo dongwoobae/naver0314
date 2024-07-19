@@ -14,6 +14,9 @@ public interface BoardCommentDaoInter extends JpaRepository<BoardCommentDto,Long
     @Query(value = "select * from boardanswer where board_num=:boardNum order by idx desc",nativeQuery = true)
     public List<BoardCommentDto> findByBoardId(@Param("boardNum") Long boardNum);
 
+    @Query(value = "select count(*) from boardanswer where idx=:idx and cpass=:cpass",nativeQuery = true)
+    public Long pwCheck(@Param("idx") Long idx, @Param("cpass") String cpass);
+
     //댓글 수정
     @Modifying
     @Transactional
