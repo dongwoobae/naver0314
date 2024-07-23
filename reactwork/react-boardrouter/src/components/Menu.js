@@ -11,7 +11,7 @@ const Menu = () => {
         <div>
             <ul className="mainMenu">
                 <li onClick={() => handleLiClick('/')}>
-                   Home
+                    Home
                 </li>
                 <li onClick={() => handleLiClick('/board/list')}>
                     List
@@ -19,11 +19,23 @@ const Menu = () => {
                 <li onClick={() => handleLiClick('/board/form')}>
                     WriteForm
                 </li>
-                <li onClick={()=>handleLiClick('/post')}>
+                <li onClick={() => handleLiClick('/post')}>
                     Post
                 </li>
-                <li onClick={()=>handleLiClick('/sweet')}>
+                <li onClick={() => handleLiClick('/sweet')}>
                     SweetAlert
+                </li>
+                <li onClick={() => handleLiClick('/reducer1')}>
+                    Reducer1
+                </li>
+                <li onClick={() => handleLiClick('/reducer2')}>
+                    Reducer2
+                </li>
+                <li onClick={() => handleLiClick('/memo')}>
+                    useMemo
+                </li>
+                <li onClick={() => handleLiClick('/callback')}>
+                    callback
                 </li>
             </ul>
         </div>

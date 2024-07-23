@@ -120,7 +120,7 @@ const BoardDetail = () => {
             setCommentList(res.data);
         })
     }
-    const insertComment=(e)=>{
+    const insertComment=()=>{
         const formData=new FormData();
         formData.append('boardNum',boardNum);
         formData.append('nickname',nickname);
@@ -257,7 +257,8 @@ const BoardDetail = () => {
                                     {
                                         visibleInputIndex===comment.idx&&visibility&&(
                                             <div style={{display:'inline-flex'}}>
-                                        <input type={'password'} style={{width:'150px',fontSize:'small'}} className={'form-control'} placeholder={'댓글 비밀번호'} name={'cpassInput'} value={inputCpass} onChange={(e)=>{
+                                        <input type={'password'} style={{width:'150px',fontSize:'small'}} className={'form-control'} placeholder={'댓글 비밀번호'}
+                                               name={'cpassInput'} value={inputCpass} onChange={(e)=>{
                                         setInputCpass(e.target.value);
                                     }}/>&nbsp;
                                                 {
